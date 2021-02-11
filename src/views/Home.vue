@@ -1,22 +1,28 @@
 <template>
-  <v-app id="body">
-    
-  </v-app>
+  <div class="home">
+    <titulo />
+    <login />
+  </div>
 </template>
 
 <script>
+import Titulo from '../components/Titulo'
+import Login from '../components/Login'
+
 export default {
-  data: () => ({
-    step: 1
-  }),
-  props: {
-    source: String
-  }
+  name: "Home",
+  components: {Titulo, Login},
 };
 </script>
 
-<style scoped>
-#body {
-  background-color: #323232
+<style>
+body {
+  padding: 0;
+  margin: 0;
+  background: radial-gradient(
+    123.22% 129.67% at 100.89% -5.6%,
+    #201d47 0%,
+    #201d47 100%
+  );
 }
 </style>

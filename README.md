@@ -1,4 +1,4 @@
-# web-monkey-invest
+# web-monkeyinv
 
 ## Project setup
 ```
