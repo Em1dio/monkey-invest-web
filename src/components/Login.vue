@@ -2,11 +2,17 @@
   <div>
     <div class="form">
       <div>
-        <input name="username" type="text" placeholder="Username" />
+        <input
+          name="username"
+          v-model="input.username"
+          type="text"
+          placeholder="Username"
+        />
       </div>
       <div class="password">
         <input
           name="password"
+          v-model="input.password"
           :type="showPassword ? 'text' : 'password'"
           placeholder="Password"
         />
@@ -20,7 +26,7 @@
           <eye-off-icon v-else size="48" style="color: #fff" stroke-width="1" />
         </div>
       </div>
-      <button>Login</button>
+      <orange-button width="300px" @click="checkLogin">Login</orange-button>
     </div>
   </div>
 </template>
@@ -29,21 +35,61 @@
 // https://tablericons.com/
 // https://github.com/FortAwesome/vue-fontawesome
 import { EyeIcon, EyeOffIcon } from "vue-tabler-icons";
+import OrangeButton from "./OrangeButton.vue";
 
 export default {
-  components: { EyeIcon, EyeOffIcon },
+  components: { EyeIcon, EyeOffIcon, OrangeButton },
   data() {
     return {
       showPassword: false,
+      input: {
+        username: "",
+        password: "",
+      },
     };
   },
-  methods: {},
+  methods: {
+    async auth() {
+      const data = {
+        username: this.input.username,
+        password: this.input.password,
+      };
+      try {
+        const response = await this.$http.post("/auth/login", data);
+        console.log(response);
+        if (response.status === 201) {
+          this.$store.state.token = response.data.data.access_token;
+          this.$store.state.authenticated = true;
+          this.$store.state.username = this.input.username;
+          this.input.username = "";
+          this.input.password = "";
+          this.$http.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${response.data.data.access_token}`;
+
+        // this.$router.replace({ name: "dashboard" });
+        console.log(this.$http)
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async checkLogin() {
+      if (this.input.username != "" && this.input.password != "") {
+        await this.auth();
+      } else {
+        console.log("username and password must be present");
+      }
+    },
+  },
 };
 </script>
+
 <style scoped>
 * {
   display: flex;
   margin: 0 auto;
+  color: white;
 }
 
 .form {
@@ -76,25 +122,9 @@ export default {
   opacity: 1; /* Firefox */
 }
 
-.form button {
-  all: unset;
-  width: 254px;
-  height: 51px;
-  background: rgba(226, 112, 52, 1);
-  border-radius: 14px;
-  color: white;
-  margin-top: 100px;
-  cursor: pointer;
-}
-
-.form button:hover {
-  background: rgb(241, 145, 93);
-}
-
 .form .password .icon {
   padding: 2px;
   margin-left: -30px;
 }
-
 </style>
 
