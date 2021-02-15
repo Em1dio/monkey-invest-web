@@ -1,22 +1,20 @@
 <template>
   <div class="home">
-    <titulo />
-    <login />
+    Ola Mundo
   </div>
 </template>
 
 <script>
-import Titulo from '../components/Titulo'
-import Login from '../components/Login' 
 
 export default {
-  name: "Home",
-  components: {Titulo, Login},
+  name: "Dashboard",
+  components: {},
 };
 </script>
 
 <style>
 body {
+  color: white;
   padding: 0;
   margin: 0;
   background: radial-gradient(

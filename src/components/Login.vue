@@ -1,32 +1,101 @@
 <template>
   <div>
     <div class="form">
-      <div>
+      <div v-if="showLogin" class="login">
+        <div>
+          <input
+            name="username"
+            v-model="login.username"
+            type="text"
+            placeholder="Username"
+          />
+        </div>
+        <div class="password">
+          <input
+            name="password"
+            v-model="login.password"
+            :type="showPassword ? 'text' : 'password'"
+            placeholder="Password"
+          />
+          <div class="icon" @click="showPassword = !showPassword">
+            <eye-icon
+              v-if="showPassword"
+              size="48"
+              style="color: #fff"
+              stroke-width="1"
+            />
+            <eye-off-icon
+              v-else
+              size="48"
+              style="color: #fff"
+              stroke-width="1"
+            />
+          </div>
+        </div>
+        <p @click="showLogin = !showLogin">Click here to Signup</p>
+        <orange-button width="300px" @click="checkLogin">Login</orange-button>
+      </div>
+      <div v-else class="register">
+        <input
+          name="name"
+          v-model="register.name"
+          type="text"
+          placeholder="Name"
+        />
         <input
           name="username"
-          v-model="input.username"
+          v-model="register.username"
           type="text"
-          placeholder="Username"
+          placeholder="Username/Email"
         />
-      </div>
-      <div class="password">
-        <input
-          name="password"
-          v-model="input.password"
-          :type="showPassword ? 'text' : 'password'"
-          placeholder="Password"
-        />
-        <div class="icon" @click="showPassword = !showPassword">
-          <eye-icon
-            v-if="showPassword"
-            size="48"
-            style="color: #fff"
-            stroke-width="1"
+        <div class="password">
+          <input
+            name="password"
+            v-model="register.password"
+            :type="showPassword ? 'text' : 'password'"
+            placeholder="Password"
           />
-          <eye-off-icon v-else size="48" style="color: #fff" stroke-width="1" />
+          <div class="icon" @click="showPassword = !showPassword">
+            <eye-icon
+              v-if="showPassword"
+              size="48"
+              style="color: #fff"
+              stroke-width="1"
+            />
+            <eye-off-icon
+              v-else
+              size="48"
+              style="color: #fff"
+              stroke-width="1"
+            />
+          </div>
         </div>
+        <!-- TODO: Transformar isso em Component. -->
+        <div class="password">
+          <input
+            name="confirmPassword"
+            v-model="register.confirmPassword"
+            :type="showPassword ? 'text' : 'password'"
+            placeholder="Password"
+          />
+          <div class="icon" @click="showPassword = !showPassword">
+            <eye-icon
+              v-if="showPassword"
+              size="48"
+              style="color: #fff"
+              stroke-width="1"
+            />
+            <eye-off-icon
+              v-else
+              size="48"
+              style="color: #fff"
+              stroke-width="1"
+            />
+          </div>
+        </div>
+        <p @click="showLogin = !showLogin">Click here to Login</p>
+        <orange-button width="300px" @click="registerAccount">Register</orange-button>
       </div>
-      <orange-button width="300px" @click="checkLogin">Login</orange-button>
     </div>
   </div>
 </template>
@@ -42,43 +111,73 @@ export default {
   data() {
     return {
       showPassword: false,
-      input: {
+      showLogin: true,
+      login: {
         username: "",
         password: "",
+      },
+      register: {
+        name: "",
+        username: "",
+        password: "",
+        confirmPassword: "",
       },
     };
   },
   methods: {
     async auth() {
       const data = {
-        username: this.input.username,
-        password: this.input.password,
+        username: this.login.username,
+        password: this.login.password,
       };
       try {
         const response = await this.$http.post("/auth/login", data);
-        console.log(response);
         if (response.status === 201) {
-          this.$store.state.token = response.data.data.access_token;
+          this.$store.state.token = response.data.access_token;
           this.$store.state.authenticated = true;
-          this.$store.state.username = this.input.username;
-          this.input.username = "";
-          this.input.password = "";
+          this.$store.state.username = this.login.username;
+          this.login.username = "";
+          this.login.password = "";
           this.$http.defaults.headers.common[
             "Authorization"
-          ] = `Bearer ${response.data.data.access_token}`;
-
-        // this.$router.replace({ name: "dashboard" });
-        console.log(this.$http)
+          ] = `Bearer ${response.data.access_token}`;
+          this.$cookies.config("7d");
+          this.$cookies.set("token", response.data.access_token);
+          this.$router.replace({ name: "dashboard" });
         }
       } catch (error) {
         console.log(error);
       }
     },
     async checkLogin() {
-      if (this.input.username != "" && this.input.password != "") {
+      if (this.login.username != "" && this.login.password != "") {
         await this.auth();
       } else {
         console.log("username and password must be present");
+      }
+    },
+
+    async registerAccount() {
+      const confirmPassword = this.register.password === this.register.confirmPassword;
+      if (!confirmPassword) {
+        // TODO: GERAR ALERT!
+        return;
+      }
+      const data = {
+        name: this.register.name,
+        username: this.register.username,
+        password: this.register.password,
+      };
+      try {
+        const response = await this.$http.post("/users", data);
+        if (response.status === 201) {
+          this.register.name = "";
+          this.register.username = "";
+          this.register.password= "";
+          this.showLogin = true;
+        }
+      } catch (error) {
+        console.log(error);
       }
     },
   },
@@ -97,7 +196,15 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 200px;
+  margin-top: 150px;
+}
+
+.login,
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .form input {
