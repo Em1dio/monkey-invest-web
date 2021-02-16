@@ -6,12 +6,12 @@
 </template>
 
 <script>
-import Titulo from '../components/Titulo'
-import Login from '../components/Login' 
+import Titulo from '../components/Titulo';
+import Login from '../components/Login';
 
 export default {
-  name: "Home",
-  components: {Titulo, Login},
+  name: 'Home',
+  components: { Titulo, Login },
 };
 </script>
 

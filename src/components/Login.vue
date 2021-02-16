@@ -94,7 +94,9 @@
           </div>
         </div>
         <p @click="showLogin = !showLogin">Click here to Login</p>
-        <orange-button width="300px" @click="registerAccount">Register</orange-button>
+        <orange-button width="300px" @click="registerAccount"
+          >Register</orange-button
+        >
       </div>
     </div>
   </div>
@@ -103,8 +105,8 @@
 <script>
 // https://tablericons.com/
 // https://github.com/FortAwesome/vue-fontawesome
-import { EyeIcon, EyeOffIcon } from "vue-tabler-icons";
-import OrangeButton from "./OrangeButton.vue";
+import { EyeIcon, EyeOffIcon } from 'vue-tabler-icons';
+import OrangeButton from './OrangeButton.vue';
 
 export default {
   components: { EyeIcon, EyeOffIcon, OrangeButton },
@@ -113,14 +115,14 @@ export default {
       showPassword: false,
       showLogin: true,
       login: {
-        username: "",
-        password: "",
+        username: '',
+        password: '',
       },
       register: {
-        name: "",
-        username: "",
-        password: "",
-        confirmPassword: "",
+        name: '',
+        username: '',
+        password: '',
+        confirmPassword: '',
       },
     };
   },
@@ -131,34 +133,35 @@ export default {
         password: this.login.password,
       };
       try {
-        const response = await this.$http.post("/auth/login", data);
+        const response = await this.$http.post('/auth/login', data);
         if (response.status === 201) {
           this.$store.state.token = response.data.access_token;
           this.$store.state.authenticated = true;
           this.$store.state.username = this.login.username;
-          this.login.username = "";
-          this.login.password = "";
+          this.login.username = '';
+          this.login.password = '';
           this.$http.defaults.headers.common[
-            "Authorization"
+            'Authorization'
           ] = `Bearer ${response.data.access_token}`;
-          this.$cookies.config("7d");
-          this.$cookies.set("token", response.data.access_token);
-          this.$router.replace({ name: "dashboard" });
+          this.$cookies.config('7d');
+          this.$cookies.set('token', response.data.access_token);
+          this.$router.replace({ name: 'dashboard' });
         }
       } catch (error) {
         console.log(error);
       }
     },
     async checkLogin() {
-      if (this.login.username != "" && this.login.password != "") {
+      if (this.login.username != '' && this.login.password != '') {
         await this.auth();
       } else {
-        console.log("username and password must be present");
+        console.log('username and password must be present');
       }
     },
 
     async registerAccount() {
-      const confirmPassword = this.register.password === this.register.confirmPassword;
+      const confirmPassword =
+        this.register.password === this.register.confirmPassword;
       if (!confirmPassword) {
         // TODO: GERAR ALERT!
         return;
@@ -169,11 +172,11 @@ export default {
         password: this.register.password,
       };
       try {
-        const response = await this.$http.post("/users", data);
+        const response = await this.$http.post('/users', data);
         if (response.status === 201) {
-          this.register.name = "";
-          this.register.username = "";
-          this.register.password= "";
+          this.register.name = '';
+          this.register.username = '';
+          this.register.password = '';
           this.showLogin = true;
         }
       } catch (error) {
@@ -234,4 +237,3 @@ export default {
   margin-left: -30px;
 }
 </style>
-

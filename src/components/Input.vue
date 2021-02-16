@@ -9,7 +9,7 @@
     @focus="focus($event)"
     @blur="focus($event)"
     @keyup="onKeyUp($event)"
-  >
+  />
 </template>
 
 <script>
@@ -17,59 +17,59 @@ export default {
   props: {
     format: {
       type: Boolean,
-      default: false
+      default: false,
     },
     isDisable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     value: {
       type: Number,
-      default: 0
+      default: 0,
     },
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     fontSize: {
       type: String,
-      default: '12px'
+      default: '12px',
     },
     backgroundColor: {
       type: String,
-      default: '#FFF'
+      default: '#FFF',
     },
     marginLeft: {
       type: String,
-      default: '0px'
+      default: '0px',
     },
     marginRight: {
       type: String,
-      default: '0px'
+      default: '0px',
     },
     borderRadius: {
       type: String,
-      default: '10px'
+      default: '10px',
     },
     width: {
       type: String,
-      default: '100px'
+      default: '100px',
     },
     height: {
       type: String,
-      default: '30px'
+      default: '30px',
     },
     borderWidth: {
       type: String,
-      default: '1px'
+      default: '1px',
     },
     borderStyle: {
       type: String,
-      default: 'solid'
+      default: 'solid',
     },
     borderColor: {
       type: String,
-      default: '#cecece'
+      default: '#cecece',
     },
     borderFocused: {
       type: String,
@@ -81,7 +81,7 @@ export default {
     },
     display: {
       type: String,
-      default: 'flex'
+      default: 'flex',
     },
     alignItems: {
       type: String,
@@ -106,7 +106,7 @@ export default {
     paddingLeft: {
       type: String,
       default: '10px',
-    }
+    },
   },
   data() {
     return {
@@ -126,7 +126,8 @@ export default {
         height: this.height,
         borderWidth: this.borderWidth,
         borderStyle: this.borderStyle,
-        borderColor: (this.isFocused === true) ? this.borderFocused : this.borderColor,
+        borderColor:
+          this.isFocused === true ? this.borderFocused : this.borderColor,
         display: this.display,
         alignItems: this.alignItems,
         fontFamily: this.fontFamily,
@@ -153,14 +154,14 @@ export default {
     onKeyUp() {
       this.$emit('value', this.inputvalue);
     },
-  }
+  },
 };
 </script>
 
 <style scoped>
 .kbutton {
-    all: unset;
-    transition: 150ms ease-in-out;
+  all: unset;
+  transition: 150ms ease-in-out;
 }
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
@@ -170,7 +171,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 </style>

@@ -1,13 +1,10 @@
 <template>
-  <div class="home">
-    Ola Mundo
-  </div>
+  <div class="home">Ola Mundo</div>
 </template>
 
 <script>
-
 export default {
-  name: "Dashboard",
+  name: 'Dashboard',
   components: {},
 };
 </script>

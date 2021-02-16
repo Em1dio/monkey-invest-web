@@ -8,10 +8,9 @@
 
 <script>
 export default {
-  name: "Titulo",
+  name: 'Titulo',
 };
 </script>
-
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;600;700&display=swap');
@@ -21,7 +20,7 @@ export default {
 
 #titulo {
   font-size: 48px;
-  color: #E27034;
+  color: #e27034;
   font-weight: 700;
 }
 
