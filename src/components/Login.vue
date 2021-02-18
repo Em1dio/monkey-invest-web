@@ -235,7 +235,6 @@ export default {
 
 .form .password .icon {
   height: 48px;
-
   padding: 2px;
   margin-left: -30px;
   cursor: pointer;
