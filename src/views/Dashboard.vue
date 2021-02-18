@@ -1,23 +1,38 @@
 <template>
-  <div class="home">Ola Mundo</div>
+  <div>
+    <orange-button @click="logout">Logout</orange-button>
+  </div>
 </template>
 
 <script>
+import OrangeButton from '../components/OrangeButton.vue';
+// import { Menu2Icon } from 'vue-tabler-icons';
+
 export default {
   name: 'Dashboard',
-  components: {},
+  components: { OrangeButton },
+  methods: {
+    logout() {
+      this.$cookies.remove('token');
+      this.$router.replace({ name: 'Home' });
+    },
+  },
 };
 </script>
 
-<style>
+<style scoped>
 body {
+  padding-left: calc(var(--nav-width) + 188px);
   color: white;
   padding: 0;
   margin: 0;
-  background: radial-gradient(
-    123.22% 129.67% at 100.89% -5.6%,
-    #201d47 0%,
-    #201d47 100%
-  );
+  background-color: aliceblue;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 </style>

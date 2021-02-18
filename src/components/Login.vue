@@ -143,7 +143,7 @@ export default {
           this.$http.defaults.headers.common[
             'Authorization'
           ] = `Bearer ${response.data.access_token}`;
-          this.$cookies.config('7d');
+          this.$cookies.config('1d');
           this.$cookies.set('token', response.data.access_token);
           this.$router.replace({ name: 'dashboard' });
         }
