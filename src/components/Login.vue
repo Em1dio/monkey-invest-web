@@ -234,7 +234,6 @@ export default {
 }
 
 .form .password .icon {
-  /* background-color: red; */
   height: 48px;
 
   padding: 2px;
