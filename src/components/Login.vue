@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="form">
+    <form class="form">
       <div v-if="showLogin" class="login">
         <div>
           <input
@@ -35,7 +35,8 @@
         <p @click="showLogin = !showLogin">Click here to Signup</p>
         <orange-button width="300px" @click="checkLogin">Login</orange-button>
       </div>
-      <div v-else class="register">
+
+      <form v-else class="register">
         <input
           name="name"
           v-model="register.name"
@@ -97,8 +98,8 @@
         <orange-button width="300px" @click="registerAccount"
           >Register</orange-button
         >
-      </div>
-    </div>
+      </form>
+    </form>
   </div>
 </template>
 
@@ -233,7 +234,29 @@ export default {
 }
 
 .form .password .icon {
+  height: 48px;
   padding: 2px;
   margin-left: -30px;
+  cursor: pointer;
+  transition: opacity 150ms ease-in-out;
+
+  /* double clicking the show/hide button doesn't select text with this: */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
+}
+
+.form .password .icon:hover {
+  opacity: 0.7;
+}
+
+.form p {
+  cursor: pointer;
+  transition: opacity 150ms ease-in-out;
+}
+
+.form p:hover {
+  opacity: 0.7;
 }
 </style>
