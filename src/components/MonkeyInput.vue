@@ -6,6 +6,9 @@
     :style="styled"
     :type="type"
     :disabled="isDisable"
+    :placeholder="placeholder"
+    :maxlength="maxlength"
+    :min="min"
     @focus="focus($event)"
     @blur="focus($event)"
     @keyup="onKeyUp($event)"
@@ -14,6 +17,7 @@
 
 <script>
 export default {
+  name: 'MonkeyInput',
   props: {
     format: {
       type: Boolean,
@@ -24,12 +28,16 @@ export default {
       default: false,
     },
     value: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
     type: {
       type: String,
       default: 'text',
+    },
+    placeholder: {
+      type: String,
+      default: '',
     },
     fontSize: {
       type: String,
@@ -105,7 +113,15 @@ export default {
     },
     paddingLeft: {
       type: String,
-      default: '10px',
+      default: '0px',
+    },
+    maxlength: {
+      type: String,
+      default: '255',
+    },
+    min: {
+      type: String,
+      default: '-9999999',
     },
   },
   data() {

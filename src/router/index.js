@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Dashboard from '../views/Dashboard.vue';
+import Stocks from '../views/stocks';
 import VueCookies from 'vue-cookies';
 import './../plugins/axios';
 import Home from '@/views/Home.vue';
@@ -19,18 +20,12 @@ const routes = [
   {
     path: '/stocks',
     component: Layout,
-    redirect: '/stocks/create/:id',
+    redirect: '/stocks',
     children: [
       {
-        path: '/create',
-        name: 'dgdgd',
-        component: Dashboard,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: '/analytics',
-        name: 'Analytics',
-        component: () => import('@/views/analytics'),
+        path: '/stocks',
+        name: 'stocks',
+        component: Stocks,
         meta: { requiresAuth: true },
       },
     ],
@@ -48,7 +43,7 @@ const routes = [
       },
       {
         path: '/analytics',
-        name: 'Analytics',
+        name: 'analytics',
         component: () => import('@/views/analytics'),
         meta: { requiresAuth: true },
       },

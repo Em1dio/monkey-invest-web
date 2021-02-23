@@ -1,22 +1,13 @@
 <template>
-  <div>
-    <orange-button @click="logout">Logout</orange-button>
+  <div class="dashboard">
+    <p>Ola! Sejam bem vindo a MonkeyInvest</p>
   </div>
 </template>
 
 <script>
-import OrangeButton from '../components/OrangeButton.vue';
-// import { Menu2Icon } from 'vue-tabler-icons';
-
 export default {
   name: 'Dashboard',
-  components: { OrangeButton },
-  methods: {
-    logout() {
-      this.$cookies.remove('token');
-      this.$router.replace({ name: 'Home' });
-    },
-  },
+  components: {},
 };
 </script>
 
@@ -26,7 +17,11 @@ body {
   color: white;
   padding: 0;
   margin: 0;
-  background-color: aliceblue;
+}
+
+.dashboard {
+  color: white;
+  background-color: '#fff';
 }
 
 .header {

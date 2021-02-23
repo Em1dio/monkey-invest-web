@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form class="form">
+    <div class="form">
       <div v-if="showLogin" class="login">
         <div>
           <input
@@ -99,7 +99,7 @@
           >Register</orange-button
         >
       </form>
-    </form>
+    </div>
   </div>
 </template>
 

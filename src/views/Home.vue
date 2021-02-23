@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <titulo />
+    <titulo marginTop="100px" fontSize="48px" />
     <login />
   </div>
 </template>
