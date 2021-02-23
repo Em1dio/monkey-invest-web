@@ -8,6 +8,6 @@ export default {};
 <style scoped>
 .appMain {
   all: unset;
-  width: 70%;
+  width: 100%;
 }
 </style>

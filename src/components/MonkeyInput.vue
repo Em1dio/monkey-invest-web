@@ -1,7 +1,7 @@
 <template>
   <input
     ref="kinput"
-    v-model.number="inputvalue"
+    v-model.lazy="inputvalue"
     class="kbutton"
     :style="styled"
     :type="type"
@@ -66,6 +66,14 @@ export default {
     height: {
       type: String,
       default: '30px',
+    },
+    minWidth: {
+      type: String,
+      default: '0px',
+    },
+    minHeight: {
+      type: String,
+      default: '0px',
     },
     borderWidth: {
       type: String,
@@ -132,6 +140,11 @@ export default {
       lastStr: [],
     };
   },
+  watch: {
+    inputvalue() {
+      this.$emit('value', this.inputvalue);
+    },
+  },
   computed: {
     styled() {
       return {
@@ -140,6 +153,8 @@ export default {
         borderRadius: this.borderRadius,
         width: this.width,
         height: this.height,
+        minWidth: this.minWidth,
+        minHeight: this.minHeight,
         borderWidth: this.borderWidth,
         borderStyle: this.borderStyle,
         borderColor:

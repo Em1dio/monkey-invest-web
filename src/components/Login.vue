@@ -33,7 +33,9 @@
           </div>
         </div>
         <p @click="showLogin = !showLogin">Click here to Signup</p>
-        <orange-button width="300px" @click="checkLogin">Login</orange-button>
+        <orange-button width="300px" marginTop="100px" @click="checkLogin">
+          Login
+        </orange-button>
       </div>
 
       <form v-else class="register">
@@ -95,9 +97,9 @@
           </div>
         </div>
         <p @click="showLogin = !showLogin">Click here to Login</p>
-        <orange-button width="300px" @click="registerAccount"
-          >Register</orange-button
-        >
+        <orange-button width="300px" marginTop="100px" @click="registerAccount">
+          Register
+        </orange-button>
       </form>
     </div>
   </div>

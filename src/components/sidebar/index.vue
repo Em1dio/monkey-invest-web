@@ -52,7 +52,7 @@ export default {
 .container {
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 20%;
   min-height: 100vh;
   background-color: #fff;
 }
