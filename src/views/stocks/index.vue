@@ -4,7 +4,11 @@
       <h1>Stocks</h1>
       <div class="region">
         <p class="region__titulo">Insert Stock</p>
-        <insertStock />
+        <insert-stock />
+      </div>
+      <div class="region">
+        <p class="region__titulo">Stocks</p>
+        <read-stocks />
       </div>
     </div>
   </div>
@@ -12,8 +16,9 @@
 
 <script>
 import insertStock from './insert';
+import readStocks from './read';
 export default {
-  components: { insertStock },
+  components: { insertStock, readStocks },
 };
 </script>
 

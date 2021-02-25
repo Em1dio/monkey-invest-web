@@ -107,6 +107,10 @@ export default {
       type: String,
       default: '500',
     },
+    padding: {
+      type: String,
+      default: '0px',
+    },
   },
   computed: {
     style() {
@@ -134,6 +138,7 @@ export default {
         alignItems: this.alignItems,
         justifyContent: this.justifyContent,
         fontWeight: this.fontWeight,
+        padding: this.padding,
       };
     },
   },

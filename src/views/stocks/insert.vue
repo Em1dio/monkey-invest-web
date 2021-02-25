@@ -31,7 +31,7 @@
           min="0"
           width="100%"
           minWidth="100px"
-          @value="stock.price = $event"
+          @value="stock.value = $event"
         />
       </div>
       <div class="form__input">
@@ -70,14 +70,24 @@ export default {
       stock: {
         symbol: '',
         quantity: null,
-        price: null,
+        value: null,
         date: null,
       },
     };
   },
   methods: {
     async insertStock() {
-      console.log(this.stock);
+      try {
+        const response = await this.$http.post('/stocks/', this.stock);
+        if (response.status === 201) {
+          this.stock.symbol = '';
+          this.quantity = null;
+          this.value = null;
+          this.date = null;
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
