@@ -40,6 +40,6 @@ export default {
 
 .region__titulo {
   font-weight: 700;
-  color: rgba(226, 112, 44, 1);
+  color: #e2702c;
 }
 </style>

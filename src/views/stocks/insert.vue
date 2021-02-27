@@ -11,6 +11,7 @@
           minWidth="100px"
           @value="stock.symbol = $event"
         />
+        {{ stock.symbol }}
       </div>
       <div class="form__input">
         <p class="input__titulo">Quantity</p>
@@ -81,9 +82,9 @@ export default {
         const response = await this.$http.post('/stocks/', this.stock);
         if (response.status === 201) {
           this.stock.symbol = '';
-          this.quantity = null;
-          this.value = null;
-          this.date = null;
+          this.stock.quantity = null;
+          this.stock.value = null;
+          this.stock.date = null;
         }
       } catch (error) {
         console.log(error);

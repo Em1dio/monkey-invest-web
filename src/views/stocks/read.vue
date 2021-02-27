@@ -26,15 +26,21 @@
         <tr v-for="stock in stocks" :key="stock._id">
           <td>{{ stock.symbol }}</td>
           <td>{{ stock.quantity }}</td>
-          <td>{{ stock.value }}</td>
-          <td>{{ stock.value * stock.quantity }}</td>
-          <td>{{ stock.value }}</td>
-          <td>{{ stock.value * stock.quantity }}</td>
+          <td>{{ stock.value | toCurrency }}</td>
+          <td>{{ (stock.value * stock.quantity) | toCurrency }}</td>
+          <td>{{ stock.actualValue | toCurrency }}</td>
+          <td>{{ (stock.actualValue * stock.quantity) | toCurrency }}</td>
           <td>
-            {{ stock.value * stock.quantity - stock.value * stock.quantity }}
+            {{
+              (stock.actualValue * stock.quantity -
+                stock.value * stock.quantity)
+                | toCurrency
+            }}
           </td>
-          <td>150%</td>
-          <td>E R</td>
+          <td>
+            {{ calcPercent(stock.value, stock.actualValue) | toPercent }}
+          </td>
+          <td><edit-icon /><trash-icon /></td>
         </tr>
       </table>
     </div>
@@ -43,9 +49,9 @@
 
 <script>
 import OrangeButton from '../../components/OrangeButton.vue';
-import { RefreshIcon } from 'vue-tabler-icons';
+import { RefreshIcon, TrashIcon, EditIcon } from 'vue-tabler-icons';
 export default {
-  components: { OrangeButton, RefreshIcon },
+  components: { OrangeButton, RefreshIcon, TrashIcon, EditIcon },
   data() {
     return {
       stocks: [],
@@ -62,6 +68,10 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    calcPercent(initial, now) {
+      const value = now / initial;
+      return value - 1;
     },
   },
 };

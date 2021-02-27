@@ -1,7 +1,7 @@
 <template>
   <input
     ref="kinput"
-    v-model.lazy="inputvalue"
+    v-model="inputvalue"
     class="kbutton"
     :style="styled"
     :type="type"
