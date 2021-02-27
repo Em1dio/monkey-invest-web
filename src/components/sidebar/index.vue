@@ -9,6 +9,7 @@
           <dashboard-icon />
         </item>
         <item @click="GoTo('stocks')" text="Stocks"><wallet-icon /></item>
+        <item text="CryptoCoins"><coin-icon /></item>
         <item text="Settings"><settings-icon /></item>
       </div>
       <div @click="logout" class="logout">
@@ -25,6 +26,7 @@ import {
   DashboardIcon,
   SettingsIcon,
   WalletIcon,
+  CoinIcon,
   LogoutIcon,
 } from 'vue-tabler-icons';
 
@@ -36,6 +38,7 @@ export default {
     SettingsIcon,
     WalletIcon,
     LogoutIcon,
+    CoinIcon,
   },
   methods: {
     GoTo(link) {
