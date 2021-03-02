@@ -8,7 +8,7 @@
       fontWeight="700"
       padding="5px"
     >
-      <refresh-icon class="icon" />
+      <refresh-icon />
     </orange-button>
     <div class="form__read__stock">
       <table v-if="stocks.length >= 1" class="stocks__table">
@@ -40,7 +40,9 @@
           <td>
             {{ calcPercent(stock.value, stock.actualValue) | toPercent }}
           </td>
-          <td><edit-icon /><trash-icon /></td>
+          <td>
+            <options @readStock="readStock" :id="stock._id" />
+          </td>
         </tr>
       </table>
     </div>
@@ -49,9 +51,10 @@
 
 <script>
 import OrangeButton from '../../components/OrangeButton.vue';
-import { RefreshIcon, TrashIcon, EditIcon } from 'vue-tabler-icons';
+import Options from './readOptions';
+import { RefreshIcon } from 'vue-tabler-icons';
 export default {
-  components: { OrangeButton, RefreshIcon, TrashIcon, EditIcon },
+  components: { OrangeButton, RefreshIcon, Options },
   data() {
     return {
       stocks: [],

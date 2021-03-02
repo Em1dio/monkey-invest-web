@@ -17,6 +17,7 @@
     "vue-feather-icon": "^1.2.0",
     "vue-router": "^3.2.0",
     "vue-tabler-icons": "^1.8.1",
+    "vuejs-overlay": "0.0.28",
     "vuex": "^3.4.0"
   },
   "devDependencies": {

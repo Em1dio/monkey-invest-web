@@ -11,7 +11,6 @@
           minWidth="100px"
           @value="stock.symbol = $event"
         />
-        {{ stock.symbol }}
       </div>
       <div class="form__input">
         <p class="input__titulo">Quantity</p>
