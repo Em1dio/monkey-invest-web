@@ -1,13 +1,15 @@
 <template>
   <div class="dashboard">
-    <p>Ola! Sejam bem vindo a MonkeyInvest</p>
+    <h1>Ola! Sejam bem vindo a MonkeyInvest</h1>
+    <stocks-consolidated />
   </div>
 </template>
 
 <script>
+import stocksConsolidated from './stocksConsolidated';
 export default {
   name: 'Dashboard',
-  components: {},
+  components: { stocksConsolidated },
 };
 </script>
 
