@@ -78,6 +78,7 @@ export default {
   methods: {
     async insertStock() {
       try {
+        this.stock.symbol = this.stock.symbol.toUpperCase();
         const response = await this.$http.post('/stocks/', this.stock);
         if (response.status === 201) {
           this.stock.symbol = '';
