@@ -9,8 +9,10 @@
           <dashboard-icon />
         </item>
         <item @click="GoTo('stocks')" text="Stocks"><wallet-icon /></item>
-        <item text="CryptoCoins"><coin-icon /></item>
-        <item text="Settings"><settings-icon /></item>
+        <item @click="GoTo('dashboard')" text="CryptoCoins"><coin-icon /></item>
+        <item @click="GoTo('dashboard')" text="Settings">
+          <settings-icon />
+        </item>
       </div>
       <div @click="logout" class="logout">
         <item text="Logout"><logout-icon /></item>
