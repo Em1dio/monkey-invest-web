@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Titulo from '../components/Titulo';
+import Titulo from '../components/MonkeyPack/Titulo';
 import Login from '../components/Login';
 
 export default {
@@ -24,5 +24,11 @@ body {
     #201d47 0%,
     #201d47 100%
   );
+}
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
