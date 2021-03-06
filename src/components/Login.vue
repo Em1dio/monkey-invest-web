@@ -109,7 +109,7 @@
 // https://tablericons.com/
 // https://github.com/FortAwesome/vue-fontawesome
 import { EyeIcon, EyeOffIcon } from 'vue-tabler-icons';
-import OrangeButton from './OrangeButton.vue';
+import OrangeButton from './MonkeyPack/OrangeButton.vue';
 
 export default {
   components: { EyeIcon, EyeOffIcon, OrangeButton },
