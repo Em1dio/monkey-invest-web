@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import OrangeButton from '../../components/OrangeButton.vue';
+import OrangeButton from '../../components/MonkeyPack/OrangeButton.vue';
 import Options from './readOptions';
 import { RefreshIcon } from 'vue-tabler-icons';
 export default {
