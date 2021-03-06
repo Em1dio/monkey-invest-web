@@ -72,9 +72,8 @@ export default {
         console.log(error);
       }
     },
-    calcPercent(initial, now) {
-      const value = now / initial;
-      return value - 1;
+    calcPercent(before, now) {
+      return this.$commonMethods.calcPercent(before, now);
     },
   },
 };

@@ -32,7 +32,6 @@
 
 <script>
 import cardDashboard from './../../components/MonkeyPack/cardDashboard';
-
 export default {
   components: { cardDashboard },
   data() {
@@ -51,14 +50,10 @@ export default {
     async readStockConsolidated() {
       const response = await this.$http.get('/stocks/consolidated');
       this.values = response.data;
-      this.values.pctEarn = this.calcPercent(
+      this.values.pctEarn = this.$commonMethods.calcPercent(
         this.values.totalBefore,
         this.values.totalActual,
       );
-    },
-    calcPercent(initial, now) {
-      const value = now / initial;
-      return value - 1;
     },
   },
 };

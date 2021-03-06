@@ -5,6 +5,7 @@ import store from './store';
 import './plugins/axios';
 import VueCookies from 'vue-cookies';
 import VueTablerIcons from 'vue-tabler-icons';
+import CommonMethods from './components/Common/CommonMethods';
 // https://www.npmjs.com/package/vue-cookies
 
 Vue.config.productionTip = false;
@@ -34,6 +35,7 @@ Vue.filter('toPercent', function (value) {
 });
 
 Vue.use(VueTablerIcons);
+Vue.use(CommonMethods);
 
 new Vue({
   router,
