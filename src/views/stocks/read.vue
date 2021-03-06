@@ -52,9 +52,8 @@
 <script>
 import OrangeButton from '../../components/MonkeyPack/OrangeButton.vue';
 import Options from './readOptions';
-import { RefreshIcon } from 'vue-tabler-icons';
 export default {
-  components: { OrangeButton, RefreshIcon, Options },
+  components: { OrangeButton, Options },
   data() {
     return {
       stocks: [],
