@@ -2,28 +2,39 @@
   <div class="stocksConsolidate">
     <h2>Stocks Consolidate</h2>
     <div class="values">
-      <div class="value">
-        <p>Invested</p>
-        <p>{{ values.totalBefore | toCurrency }}</p>
-      </div>
-      <div class="value">
-        <p>Actual</p>
-        <p>{{ values.totalActual | toCurrency }}</p>
-      </div>
-      <div class="value">
-        <p>Total</p>
-        <p>{{ (values.totalActual - values.totalBefore) | toCurrency }}</p>
-      </div>
-      <div class="value">
-        <p>% Earn</p>
-        <p>{{ values.pctEarn | toPercent }}</p>
-      </div>
+      <card-dashboard
+        title="Invested"
+        :value="values.totalBefore"
+        type="currency"
+      >
+        <wallet-icon />
+      </card-dashboard>
+      <card-dashboard
+        title="Actual"
+        :value="values.totalActual"
+        type="currency"
+      >
+        <coin-icon />
+      </card-dashboard>
+      <card-dashboard
+        title="Total"
+        :value="values.totalActual - values.totalBefore"
+        type="currency"
+      >
+        <cash-banknote-icon />
+      </card-dashboard>
+      <card-dashboard title="% Earn" :value="values.pctEarn" type="percentage">
+        <percentage-icon />
+      </card-dashboard>
     </div>
   </div>
 </template>
 
 <script>
+import cardDashboard from './../../components/MonkeyPack/cardDashboard';
+
 export default {
+  components: { cardDashboard },
   data() {
     return {
       values: {
@@ -54,14 +65,21 @@ export default {
 </script>
 
 <style scoped>
+.stocksConsolidate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #e27034;
+  margin-left: 10px;
+}
+
 .values {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .value {
-  margin-right: 10px;
+  margin-left: 10px;
 }
 </style>
