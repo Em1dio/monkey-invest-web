@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import Titulo from './../Titulo.vue';
+import Titulo from '../MonkeyPack/Titulo.vue';
 import Item from './Item';
 import {
   DashboardIcon,
