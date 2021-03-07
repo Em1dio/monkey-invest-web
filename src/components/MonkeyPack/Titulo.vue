@@ -18,6 +18,14 @@ export default {
       type: String,
       default: '0px',
     },
+    display: {
+      type: String,
+      default: '',
+    },
+    alignItems: {
+      type: String,
+      default: '',
+    },
     color1: {
       type: String,
       default: '#e27034',
@@ -31,6 +39,9 @@ export default {
     divTitulo() {
       return {
         marginTop: this.marginTop,
+        fontSize: this.fontSize,
+        alignItems: this.alignItems,
+        display: this.display,
       };
     },
     titulo() {

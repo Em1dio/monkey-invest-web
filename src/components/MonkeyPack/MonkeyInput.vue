@@ -131,6 +131,10 @@ export default {
       type: String,
       default: '-9999999',
     },
+    textAlign: {
+      type: String,
+      default: 'center',
+    },
   },
   data() {
     return {
@@ -169,6 +173,7 @@ export default {
         marginRight: this.marginRight,
         paddingRight: this.paddingRight,
         paddingLeft: this.paddingLeft,
+        textAlign: this.textAlign,
       };
     },
     formatedValue() {
