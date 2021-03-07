@@ -6,9 +6,8 @@
 </template>
 
 <script>
-import { TrashIcon, EditIcon } from 'vue-tabler-icons';
 export default {
-  components: { TrashIcon, EditIcon },
+  components: {},
 
   props: {
     id: {

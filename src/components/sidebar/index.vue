@@ -22,25 +22,13 @@
 </template>
 
 <script>
-import Titulo from './../Titulo.vue';
+import Titulo from '../MonkeyPack/Titulo.vue';
 import Item from './Item';
-import {
-  DashboardIcon,
-  SettingsIcon,
-  WalletIcon,
-  CoinIcon,
-  LogoutIcon,
-} from 'vue-tabler-icons';
 
 export default {
   components: {
     Titulo,
     Item,
-    DashboardIcon,
-    SettingsIcon,
-    WalletIcon,
-    LogoutIcon,
-    CoinIcon,
   },
   methods: {
     GoTo(link) {

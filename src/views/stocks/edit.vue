@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import OrangeButton from '../../components/OrangeButton.vue';
+import OrangeButton from '../../components/MonkeyPack/OrangeButton.vue';
 import Overlay from 'vuejs-overlay';
 export default {
   components: { OrangeButton, Overlay },

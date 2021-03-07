@@ -50,11 +50,10 @@
 </template>
 
 <script>
-import OrangeButton from '../../components/OrangeButton.vue';
+import OrangeButton from '../../components/MonkeyPack/OrangeButton.vue';
 import Options from './readOptions';
-import { RefreshIcon } from 'vue-tabler-icons';
 export default {
-  components: { OrangeButton, RefreshIcon, Options },
+  components: { OrangeButton, Options },
   data() {
     return {
       stocks: [],
@@ -72,9 +71,8 @@ export default {
         console.log(error);
       }
     },
-    calcPercent(initial, now) {
-      const value = now / initial;
-      return value - 1;
+    calcPercent(before, now) {
+      return this.$commonMethods.calcPercent(before, now);
     },
   },
 };

@@ -60,11 +60,10 @@
 </template>
 
 <script>
-import OrangeButton from '../../components/OrangeButton.vue';
-import MonkeyInput from '../../components/MonkeyInput.vue';
-import { FilePlusIcon } from 'vue-tabler-icons';
+import OrangeButton from '../../components/MonkeyPack/OrangeButton.vue';
+import MonkeyInput from '../../components/MonkeyPack/MonkeyInput.vue';
 export default {
-  components: { OrangeButton, MonkeyInput, FilePlusIcon },
+  components: { OrangeButton, MonkeyInput },
   data() {
     return {
       stock: {
