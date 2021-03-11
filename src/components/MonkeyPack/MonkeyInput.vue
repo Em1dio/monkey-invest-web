@@ -23,6 +23,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    clear: {
+      type: Boolean,
+      default: false,
+    },
     isDisable: {
       type: Boolean,
       default: false,
@@ -147,6 +151,12 @@ export default {
   watch: {
     inputvalue() {
       this.$emit('value', this.inputvalue);
+    },
+    clear(event) {
+      if (event) {
+        this.inputvalue = '';
+        this.$emit('clean-input', { value: false });
+      }
     },
   },
   computed: {

@@ -10,6 +10,7 @@
           width="100%"
           minWidth="100px"
           @value="stock.symbol = $event"
+          :clear="clearInput"
         />
       </div>
       <div class="form__input">
@@ -21,6 +22,7 @@
           width="100%"
           minWidth="100px"
           @value="stock.quantity = $event"
+          :clear="clearInput"
         />
       </div>
       <div class="form__input">
@@ -32,6 +34,7 @@
           width="100%"
           minWidth="100px"
           @value="stock.value = $event"
+          :clear="clearInput"
         />
       </div>
       <div class="form__input">
@@ -43,6 +46,8 @@
           width="100%"
           minWidth="100px"
           @value="stock.date = $event"
+          @clean-input="clearInput = $event.value"
+          :clear="clearInput"
         />
       </div>
       <orange-button
@@ -52,6 +57,7 @@
         width="100%"
         minWidth="200px"
         fontWeight="700"
+        :clear="clearInput"
       >
         <file-plus-icon class="icon" /> Add Stock
       </orange-button>
@@ -66,6 +72,7 @@ export default {
   components: { OrangeButton, MonkeyInput },
   data() {
     return {
+      clearInput: false,
       stock: {
         symbol: '',
         quantity: null,
@@ -84,6 +91,7 @@ export default {
           this.stock.quantity = null;
           this.stock.value = null;
           this.stock.date = null;
+          this.clearInput = true;
         }
       } catch (error) {
         console.log(error);
