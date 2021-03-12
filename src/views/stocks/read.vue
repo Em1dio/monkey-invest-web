@@ -1,15 +1,5 @@
 <template>
   <div>
-    <orange-button
-      color="#fff"
-      height="50px"
-      width="50px"
-      @click="readStock"
-      fontWeight="700"
-      padding="5px"
-    >
-      <refresh-icon />
-    </orange-button>
     <div class="form__read__stock">
       <table v-if="stocks.length >= 1" class="stocks__table">
         <tr>
@@ -41,7 +31,7 @@
             {{ calcPercent(stock.value, stock.actualValue) | toPercent }}
           </td>
           <td>
-            <options @readStock="readStock" :id="stock._id" />
+            <options @removed-stock="$emit('removed-stock', stock._id)" />
           </td>
         </tr>
       </table>
@@ -50,27 +40,11 @@
 </template>
 
 <script>
-import OrangeButton from '../../components/MonkeyPack/OrangeButton.vue';
 import Options from './readOptions';
 export default {
-  components: { OrangeButton, Options },
-  data() {
-    return {
-      stocks: [],
-    };
-  },
-  created() {
-    this.readStock();
-  },
+  components: { Options },
+  props: { stocks: Array },
   methods: {
-    async readStock() {
-      try {
-        const response = await this.$http.get('/stocks/', this.stock);
-        this.stocks = response.data;
-      } catch (error) {
-        console.log(error);
-      }
-    },
     calcPercent(before, now) {
       return this.$commonMethods.calcPercent(before, now);
     },

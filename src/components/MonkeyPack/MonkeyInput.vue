@@ -1,7 +1,7 @@
 <template>
   <input
     ref="kinput"
-    v-model="inputvalue"
+    :value="inputValue"
     class="kbutton"
     :style="styled"
     :type="type"
@@ -9,9 +9,10 @@
     :placeholder="placeholder"
     :maxlength="maxlength"
     :min="min"
+    @change="handleUpdate"
+    @input="handleUpdate"
     @focus="focus($event)"
     @blur="focus($event)"
-    @keyup="onKeyUp($event)"
   />
 </template>
 
@@ -19,6 +20,10 @@
 export default {
   name: 'MonkeyInput',
   props: {
+    value: {
+      type: String,
+      default: '',
+    },
     format: {
       type: Boolean,
       default: false,
@@ -26,10 +31,6 @@ export default {
     isDisable: {
       type: Boolean,
       default: false,
-    },
-    value: {
-      type: String,
-      default: '',
     },
     type: {
       type: String,
@@ -139,14 +140,14 @@ export default {
   data() {
     return {
       isFocused: false,
-      inputvalue: this.value,
+      inputValue: this.value,
       valueFormated: '',
       lastStr: [],
     };
   },
   watch: {
-    inputvalue() {
-      this.$emit('value', this.inputvalue);
+    value(newValue) {
+      this.inputValue = newValue;
     },
   },
   computed: {
@@ -180,15 +181,16 @@ export default {
       return this.valueFormated;
     },
   },
-  created() {
-    this.$emit('value', this.inputvalue);
-  },
   methods: {
+    handleUpdate(e) {
+      if (e.target.value === this.inputValue) return;
+
+      this.inputValue = e.target.value;
+
+      this.$emit('input', this.inputValue);
+    },
     focus() {
       this.isFocused = !this.isFocused;
-    },
-    onKeyUp() {
-      this.$emit('value', this.inputvalue);
     },
   },
 };
