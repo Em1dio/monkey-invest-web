@@ -16,6 +16,7 @@
             v-model="login.password"
             :type="showPassword ? 'text' : 'password'"
             placeholder="Password"
+            @keyup.enter="auth"
           />
           <div class="icon" @click="showPassword = !showPassword">
             <eye-icon
@@ -38,7 +39,7 @@
         </orange-button>
       </div>
 
-      <form v-else class="register">
+      <div v-else class="register">
         <input
           name="name"
           v-model="register.name"
@@ -80,6 +81,7 @@
             v-model="register.confirmPassword"
             :type="showPassword ? 'text' : 'password'"
             placeholder="Password"
+            @keyup.enter="registerAccount"
           />
           <div class="icon" @click="showPassword = !showPassword">
             <eye-icon
@@ -100,7 +102,7 @@
         <orange-button width="300px" marginTop="100px" @click="registerAccount">
           Register
         </orange-button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
