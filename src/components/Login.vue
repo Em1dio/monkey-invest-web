@@ -8,6 +8,7 @@
             v-model="login.username"
             type="text"
             placeholder="Username"
+            @keyup.enter="auth"
           />
         </div>
         <div class="password">
@@ -45,12 +46,14 @@
           v-model="register.name"
           type="text"
           placeholder="Name"
+          @keyup.enter="registerAccount"
         />
         <input
           name="username"
           v-model="register.username"
           type="text"
           placeholder="Username/Email"
+          @keyup.enter="registerAccount"
         />
         <div class="password">
           <input
@@ -58,6 +61,7 @@
             v-model="register.password"
             :type="showPassword ? 'text' : 'password'"
             placeholder="Password"
+            @keyup.enter="registerAccount"
           />
           <div class="icon" @click="showPassword = !showPassword">
             <eye-icon
