@@ -8,6 +8,7 @@
             v-model="login.username"
             type="text"
             placeholder="Username"
+            @keyup.enter="auth"
           />
         </div>
         <div class="password">
@@ -16,6 +17,7 @@
             v-model="login.password"
             :type="showPassword ? 'text' : 'password'"
             placeholder="Password"
+            @keyup.enter="auth"
           />
           <div class="icon" @click="showPassword = !showPassword">
             <eye-icon
@@ -38,18 +40,20 @@
         </orange-button>
       </div>
 
-      <form v-else class="register">
+      <div v-else class="register">
         <input
           name="name"
           v-model="register.name"
           type="text"
           placeholder="Name"
+          @keyup.enter="registerAccount"
         />
         <input
           name="username"
           v-model="register.username"
           type="text"
           placeholder="Username/Email"
+          @keyup.enter="registerAccount"
         />
         <div class="password">
           <input
@@ -57,6 +61,7 @@
             v-model="register.password"
             :type="showPassword ? 'text' : 'password'"
             placeholder="Password"
+            @keyup.enter="registerAccount"
           />
           <div class="icon" @click="showPassword = !showPassword">
             <eye-icon
@@ -80,6 +85,7 @@
             v-model="register.confirmPassword"
             :type="showPassword ? 'text' : 'password'"
             placeholder="Password"
+            @keyup.enter="registerAccount"
           />
           <div class="icon" @click="showPassword = !showPassword">
             <eye-icon
@@ -100,7 +106,7 @@
         <orange-button width="300px" marginTop="100px" @click="registerAccount">
           Register
         </orange-button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
@@ -240,6 +246,7 @@ export default {
   transition: opacity 150ms ease-in-out;
 
   /* double clicking the show/hide button doesn't select text with this: */
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
