@@ -8,6 +8,7 @@
             v-model="login.username"
             type="text"
             placeholder="Username"
+            v-on:keyup.enter="checkLogin"
           />
         </div>
         <div class="password">
@@ -16,6 +17,7 @@
             v-model="login.password"
             :type="showPassword ? 'text' : 'password'"
             placeholder="Password"
+            v-on:keyup.enter="checkLogin"
           />
           <div class="icon" @click="showPassword = !showPassword">
             <eye-icon
