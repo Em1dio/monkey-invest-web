@@ -242,6 +242,7 @@ export default {
   transition: opacity 150ms ease-in-out;
 
   /* double clicking the show/hide button doesn't select text with this: */
+  user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -khtml-user-select: none;
