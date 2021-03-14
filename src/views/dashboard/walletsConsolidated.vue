@@ -5,7 +5,7 @@
       <div v-for="item in wallets" :key="item.name">
         <card-dashboard
           :title="item.name"
-          value="0"
+          :value="number"
           type="currency"
           @click="setActive(item._id)"
         >
@@ -20,27 +20,13 @@
 import cardDashboard from './../../components/MonkeyPack/cardDashboard';
 export default {
   components: { cardDashboard },
-  data() {
-    return {
-      active: '',
-      wallets: [],
-    };
-  },
-  created() {
-    this.readWalletsConsolidated();
+  props: {
+    wallets: Object,
   },
   methods: {
-    async readWalletsConsolidated() {
-      const response = await this.$http.get('/wallets');
-      this.wallets = response.data;
-      if (!this.$store.activeWallet) {
-        this.$store.activeWallet = response.data[0]._id;
-        this.active = response.data[0]._id;
-      }
-    },
     setActive(id) {
-      this.active = id;
       this.$store.activeWallet = id;
+      this.$emit('set-wallet', id);
     },
   },
 };
