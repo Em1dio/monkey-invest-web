@@ -8,7 +8,10 @@
         <item @click="GoTo('dashboard')" text="Dashboard">
           <dashboard-icon />
         </item>
-        <item @click="GoTo('stocks')" text="Stocks"><wallet-icon /></item>
+        <item @click="GoTo('wallets')" text="Wallets"><wallet-icon /></item>
+        <item @click="GoTo('stocks')" text="Stocks">
+          <file-certificate-icon />
+        </item>
         <item @click="GoTo('dashboard')" text="CryptoCoins"><coin-icon /></item>
         <item @click="GoTo('dashboard')" text="Settings">
           <settings-icon />

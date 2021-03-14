@@ -39,7 +39,11 @@ export default {
     },
     async readStock() {
       try {
-        const response = await this.$http.get('/stocks/', this.stock);
+        const activeWallet = this.$store.activeWallet;
+        const response = await this.$http.get(
+          `/stocks/${activeWallet}`,
+          this.stock,
+        );
         this.stocks = response.data;
       } catch (error) {
         console.log(error);

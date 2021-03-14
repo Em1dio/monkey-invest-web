@@ -4,26 +4,26 @@
     <div class="values">
       <card-dashboard
         title="Invested"
-        :value="values.totalBefore"
+        :value="stocks.totalBefore"
         type="currency"
       >
         <wallet-icon />
       </card-dashboard>
       <card-dashboard
         title="Actual"
-        :value="values.totalActual"
+        :value="stocks.totalActual"
         type="currency"
       >
         <coin-icon />
       </card-dashboard>
       <card-dashboard
         title="Total"
-        :value="values.totalActual - values.totalBefore"
+        :value="stocks.totalActual - stocks.totalBefore"
         type="currency"
       >
         <cash-banknote-icon />
       </card-dashboard>
-      <card-dashboard title="% Earn" :value="values.pctEarn" type="percentage">
+      <card-dashboard title="% Earn" :value="stocks.pctEarn" type="percentage">
         <percentage-icon />
       </card-dashboard>
     </div>
@@ -34,27 +34,8 @@
 import cardDashboard from './../../components/MonkeyPack/cardDashboard';
 export default {
   components: { cardDashboard },
-  data() {
-    return {
-      values: {
-        totalBefore: 0,
-        totalActual: 0,
-        pctEarn: 0,
-      },
-    };
-  },
-  created() {
-    this.readStockConsolidated();
-  },
-  methods: {
-    async readStockConsolidated() {
-      const response = await this.$http.get('/stocks/consolidated');
-      this.values = response.data;
-      this.values.pctEarn = this.$commonMethods.calcPercent(
-        this.values.totalBefore,
-        this.values.totalActual,
-      );
-    },
+  props: {
+    stocks: Object,
   },
 };
 </script>

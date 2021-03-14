@@ -76,6 +76,7 @@ export default {
   },
   methods: {
     insertStock() {
+      this.stock.walletId = this.$store.activeWallet;
       this.$emit('inserted-stock', this.stock);
       this.stock = {
         symbol: '',
