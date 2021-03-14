@@ -11,6 +11,7 @@ export default new Vuex.Store({
     user: {
       name: '',
     },
+    activeWallet: '',
   },
   mutations: {},
   actions: {},

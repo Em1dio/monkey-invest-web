@@ -48,7 +48,10 @@ export default {
   },
   methods: {
     async readStockConsolidated() {
-      const response = await this.$http.get('/stocks/consolidated');
+      const activeWallet = this.$store.activeWallet;
+      const response = await this.$http.get(
+        `/stocks/consolidated/${activeWallet}`,
+      );
       this.values = response.data;
       this.values.pctEarn = this.$commonMethods.calcPercent(
         this.values.totalBefore,

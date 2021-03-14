@@ -2,6 +2,7 @@
   <div>
     <div class="dashboard">
       <h1>Ola! Sejam bem vindo a MonkeyInvest</h1>
+      <wallets-consolidated />
       <stocks-consolidated />
     </div>
   </div>
@@ -9,9 +10,10 @@
 
 <script>
 import stocksConsolidated from './stocksConsolidated';
+import walletsConsolidated from './walletsConsolidated';
 export default {
   name: 'Dashboard',
-  components: { stocksConsolidated },
+  components: { stocksConsolidated, walletsConsolidated },
 };
 </script>
 
