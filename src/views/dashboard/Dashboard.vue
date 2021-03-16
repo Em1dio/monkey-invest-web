@@ -16,7 +16,10 @@ import stocksConsolidated from './stocksConsolidated';
 import walletsConsolidated from './walletsConsolidated';
 export default {
   name: 'Dashboard',
-  components: { stocksConsolidated, walletsConsolidated },
+  components: {
+    stocksConsolidated,
+    walletsConsolidated,
+  },
   data() {
     return {
       stocks: {
