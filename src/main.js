@@ -6,7 +6,6 @@ import './plugins/axios';
 import VueCookies from 'vue-cookies';
 import VueTablerIcons from 'vue-tabler-icons';
 import CommonMethods from './components/Common/CommonMethods';
-// https://www.npmjs.com/package/vue-cookies
 
 Vue.config.productionTip = false;
 
@@ -26,7 +25,7 @@ Vue.filter('toPercent', function (value) {
   if (typeof value !== 'number') {
     return value;
   }
-  var formatter = new Intl.NumberFormat('en-US', {
+  var formatter = new Intl.NumberFormat('pt-BR', {
     style: 'percent',
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,

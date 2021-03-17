@@ -5,7 +5,7 @@
         <div class="top-row">
           <div class="row-item">
             <div class="icon-row">
-              <wallet-icon />
+              <cash-icon />
             </div>
             <div class="infos-row">
               <h2>Invested</h2>
@@ -16,7 +16,7 @@
           </div>
           <div class="row-item">
             <div class="icon-row">
-              <wallet-icon />
+              <businessplan-icon />
             </div>
             <div class="infos-row">
               <h2>Actual Value</h2>
@@ -29,7 +29,7 @@
         <div class="bottom-row">
           <div class="row-item">
             <div class="icon-row">
-              <wallet-icon />
+              <scale-icon />
             </div>
             <div class="infos-row">
               <h2>Balance</h2>
@@ -46,7 +46,7 @@
           </div>
           <div class="row-item">
             <div class="icon-row">
-              <wallet-icon />
+              <discount-icon />
             </div>
             <div class="infos-row">
               <h2>Earn</h2>
