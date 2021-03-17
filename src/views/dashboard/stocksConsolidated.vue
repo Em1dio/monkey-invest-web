@@ -1,39 +1,19 @@
 <template>
   <div class="stocksConsolidate">
-    <h2>Stocks Consolidate</h2>
-    <div class="values">
-      <card-dashboard
-        title="Invested"
-        :value="stocks.totalBefore"
-        type="currency"
-      >
-        <wallet-icon />
-      </card-dashboard>
-      <card-dashboard
-        title="Actual"
-        :value="stocks.totalActual"
-        type="currency"
-      >
-        <coin-icon />
-      </card-dashboard>
-      <card-dashboard
-        title="Total"
-        :value="stocks.totalActual - stocks.totalBefore"
-        type="currency"
-      >
-        <cash-banknote-icon />
-      </card-dashboard>
-      <card-dashboard title="% Earn" :value="stocks.pctEarn" type="percentage">
-        <percentage-icon />
-      </card-dashboard>
-    </div>
+    <title-bar size="50px" color="#e27034" textColor="#e7e7e7">
+      Stocks Consolidate
+    </title-bar>
+    <wallets-content :stocks="stocks" />
   </div>
 </template>
 
 <script>
-import cardDashboard from './../../components/MonkeyPack/cardDashboard';
+import walletsContent from './../../components/MonkeyPack/walletContent';
+
+import TitleBar from '../../components/MonkeyPack/titleBar.vue';
+
 export default {
-  components: { cardDashboard },
+  components: { TitleBar, walletsContent },
   props: {
     stocks: Object,
   },
@@ -47,6 +27,7 @@ export default {
   align-items: flex-start;
   color: #e27034;
   margin-left: 10px;
+  margin-top: 20px;
 }
 
 .values {
@@ -57,5 +38,13 @@ export default {
 
 .value {
   margin-left: 10px;
+}
+
+.top-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
 }
 </style>

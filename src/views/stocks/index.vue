@@ -51,7 +51,14 @@ export default {
     },
     async removeStock(id) {
       try {
-        const response = await this.$http.delete(`/stocks/${id}`);
+        const data = {
+          id,
+          walletId: this.$store.activeWallet,
+        };
+        console.log(data);
+        const response = await this.$http.delete(
+          `/stocks/${data.walletId}/${data.id}`,
+        );
         if (response.status === 200) {
           this.readStock();
         } else {

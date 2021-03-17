@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="dashboard">
-      <h1>Ola! Sejam bem vindo a MonkeyInvest</h1>
       <wallets-consolidated
         :wallets="wallets"
+        :active="activeWallet"
         @set-wallet="setActive($event)"
       />
       <stocks-consolidated :stocks="stocks" />
@@ -16,7 +16,10 @@ import stocksConsolidated from './stocksConsolidated';
 import walletsConsolidated from './walletsConsolidated';
 export default {
   name: 'Dashboard',
-  components: { stocksConsolidated, walletsConsolidated },
+  components: {
+    stocksConsolidated,
+    walletsConsolidated,
+  },
   data() {
     return {
       stocks: {
@@ -46,10 +49,13 @@ export default {
     },
     async readWalletsConsolidated() {
       const response = await this.$http.get('/wallets');
+      this.wallets = Object.keys(response).map(function (key) {
+        return [Number(key), response[key]];
+      });
       this.wallets = response.data;
       if (!this.$store.activeWallet) {
         this.$store.activeWallet = response.data[0]._id;
-        this.activeWallet = response.data[0]._id;
+        this.activeWallet = this.wallets[0]['_id'];
       }
     },
     setActive(id) {
@@ -75,5 +81,6 @@ h1 {
 
 .dashboard {
   margin-left: 10px;
+  margin-top: 10px;
 }
 </style>
