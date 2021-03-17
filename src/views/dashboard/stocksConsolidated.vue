@@ -1,21 +1,60 @@
 <template>
   <div class="stocksConsolidate">
-    <title-bar size="50px" color="#e27034" textColor="#e7e7e7">
-      Stocks Consolidate
-    </title-bar>
-    <wallets-content :stocks="stocks" />
+    <h2>Stocks Consolidate</h2>
+    <div class="values">
+      <card-dashboard
+        title="Invested"
+        :value="values.totalBefore"
+        type="currency"
+      >
+        <wallet-icon />
+      </card-dashboard>
+      <card-dashboard
+        title="Actual"
+        :value="values.totalActual"
+        type="currency"
+      >
+        <coin-icon />
+      </card-dashboard>
+      <card-dashboard
+        title="Total"
+        :value="values.totalActual - values.totalBefore"
+        type="currency"
+      >
+        <cash-banknote-icon />
+      </card-dashboard>
+      <card-dashboard title="% Earn" :value="values.pctEarn" type="percentage">
+        <percentage-icon />
+      </card-dashboard>
+    </div>
   </div>
 </template>
 
 <script>
-import walletsContent from './../../components/MonkeyPack/walletContent';
-
-import TitleBar from '../../components/MonkeyPack/titleBar.vue';
-
+import cardDashboard from './../../components/MonkeyPack/cardDashboard';
 export default {
-  components: { TitleBar, walletsContent },
-  props: {
-    stocks: Object,
+  components: { cardDashboard },
+  data() {
+    return {
+      values: {
+        totalBefore: 0,
+        totalActual: 0,
+        pctEarn: 0,
+      },
+    };
+  },
+  created() {
+    this.readStockConsolidated();
+  },
+  methods: {
+    async readStockConsolidated() {
+      const response = await this.$http.get('/stocks/consolidated');
+      this.values = response.data;
+      this.values.pctEarn = this.$commonMethods.calcPercent(
+        this.values.totalBefore,
+        this.values.totalActual,
+      );
+    },
   },
 };
 </script>
@@ -27,7 +66,6 @@ export default {
   align-items: flex-start;
   color: #e27034;
   margin-left: 10px;
-  margin-top: 20px;
 }
 
 .values {
@@ -38,13 +76,5 @@ export default {
 
 .value {
   margin-left: 10px;
-}
-
-.top-row {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
 }
 </style>
