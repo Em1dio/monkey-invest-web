@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card">
+    <div class="card" @click="$emit('click')">
       <div class="icon" :style="styled">
         <slot stroke-width="1"></slot>
       </div>
@@ -59,6 +59,7 @@ export default {
   border-radius: 20px;
   transition: all 0.2s;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .card:hover {
