@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="dashboard">
-      <h1>Ola! Sejam bem vindo a MonkeyInvest</h1>
       <wallets-consolidated
         :wallets="wallets"
         :active="activeWallet"
@@ -82,5 +81,6 @@ h1 {
 
 .dashboard {
   margin-left: 10px;
+  margin-top: 10px;
 }
 </style>
