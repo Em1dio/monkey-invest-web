@@ -4,13 +4,15 @@
       <div
         v-if="active === id"
         :class="
-          value >= 0
+          now - before >= 0
             ? 'active-icon value-positive'
             : 'active-icon value-negative'
         "
       >
         <circle-check-icon
-          :class="value >= 0 ? 'active-icon-positive' : 'active-icon-negative'"
+          :class="
+            now - before >= 0 ? 'active-icon-positive' : 'active-icon-negative'
+          "
         />
       </div>
       <div class="wallet-icon">
@@ -21,18 +23,20 @@
         <div class="wallet-value">
           <p
             :class="
-              value >= 0 ? 'value value-positive' : 'value value-negative'
+              now - before >= 0
+                ? 'value value-positive'
+                : 'value value-negative'
             "
           >
-            {{ value | toCurrency }}
+            {{ (now - before) | toCurrency }}
           </p>
-          <p v-if="value >= 0" class="percent positive">
+          <p v-if="calcPercent(before, now) >= 0" class="percent positive">
             <arrow-narrow-up-icon />
-            {{ percentValue | toPercent }}
+            {{ calcPercent(before, now) | toPercent }}
           </p>
           <p v-else class="percent negative">
             <arrow-narrow-down-icon />
-            {{ percentValue | toPercent }}
+            {{ calcPercent(before, now) | toPercent }}
           </p>
         </div>
       </div>
@@ -43,9 +47,13 @@
 <script>
 export default {
   props: {
-    value: {
+    before: {
       type: Number,
-      default: -5,
+      default: 0,
+    },
+    now: {
+      type: Number,
+      default: 0,
     },
     id: {
       type: String,
@@ -54,10 +62,6 @@ export default {
     active: {
       type: String,
       default: '',
-    },
-    percentValue: {
-      type: Number,
-      default: 0,
     },
     name: {
       type: String,
@@ -70,6 +74,9 @@ export default {
         this.active = !this.active;
       }
       this.$emit('click');
+    },
+    calcPercent(before, now) {
+      return this.$commonMethods.calcPercent(before, now);
     },
   },
 };

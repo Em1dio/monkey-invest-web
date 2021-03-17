@@ -52,7 +52,7 @@
               <h2>Earn</h2>
               <p v-if="stocks.pctEarn >= 0" class="earn positive">
                 <arrow-narrow-up-icon class="positive" />
-                {{ stocks.pctEarn | toPercentage }}
+                {{ stocks.pctEarn | toPercent }}
               </p>
               <p v-else class="earn negative">
                 <arrow-narrow-down-icon class="negative" />
@@ -87,7 +87,7 @@ export default {
 }
 
 .wallet-content {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 
 .wallet-infos-card {

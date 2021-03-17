@@ -9,6 +9,8 @@
           :name="item.name"
           :active="active"
           :id="item._id"
+          :before="item.totalBefore"
+          :now="item.totalActual"
           @click="setActive(item._id)"
         >
           <wallet-icon />
