@@ -9,9 +9,6 @@ let commonMethods = {
     };
     _Vue.prototype.$commonMethods.calcPercent = function (initial, now) {
       const value = now / initial;
-      if (isNaN(value)) {
-        return 0;
-      }
       return value - 1;
     };
   },

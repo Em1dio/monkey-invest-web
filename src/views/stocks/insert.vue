@@ -9,7 +9,7 @@
           maxlength="6"
           width="100%"
           minWidth="100px"
-          v-model="stock.symbol"
+          @value="stock.symbol = $event"
         />
       </div>
       <div class="form__input">
@@ -20,7 +20,7 @@
           min="0"
           width="100%"
           minWidth="100px"
-          v-model="stock.quantity"
+          @value="stock.quantity = $event"
         />
       </div>
       <div class="form__input">
@@ -31,7 +31,7 @@
           min="0"
           width="100%"
           minWidth="100px"
-          v-model="stock.value"
+          @value="stock.value = $event"
         />
       </div>
       <div class="form__input">
@@ -42,7 +42,7 @@
           min="0"
           width="100%"
           minWidth="100px"
-          v-model="stock.date"
+          @value="stock.date = $event"
         />
       </div>
       <orange-button
@@ -75,15 +75,19 @@ export default {
     };
   },
   methods: {
-    insertStock() {
-      this.stock.walletId = this.$store.activeWallet;
-      this.$emit('inserted-stock', this.stock);
-      this.stock = {
-        symbol: '',
-        quantity: null,
-        value: null,
-        date: null,
-      };
+    async insertStock() {
+      try {
+        this.stock.symbol = this.stock.symbol.toUpperCase();
+        const response = await this.$http.post('/stocks/', this.stock);
+        if (response.status === 201) {
+          this.stock.symbol = '';
+          this.stock.quantity = null;
+          this.stock.value = null;
+          this.stock.date = null;
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

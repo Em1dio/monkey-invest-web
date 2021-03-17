@@ -8,9 +8,26 @@
 <script>
 export default {
   components: {},
+
+  props: {
+    id: {
+      type: String,
+      default: '',
+    },
+  },
+
   methods: {
-    removeStock() {
-      this.$emit('removed-stock');
+    async removeStock() {
+      try {
+        const response = await this.$http.delete(`/stocks/${this.id}`);
+        if (response.status === 200) {
+          this.$emit('readStock');
+        } else {
+          throw new Error('Teste');
+        }
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
