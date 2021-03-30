@@ -11,7 +11,7 @@
           <th>Total Actual</th>
           <th>$ Earn</th>
           <th>%</th>
-          <th>Actions</th>
+          <th v-if="options">Actions</th>
         </tr>
         <tr v-for="stock in stocks" :key="stock._id">
           <td>{{ stock.symbol }}</td>
@@ -30,7 +30,7 @@
           <td>
             {{ calcPercent(stock.value, stock.actualValue) | toPercent }}
           </td>
-          <td>
+          <td v-if="options">
             <options @removed-stock="$emit('removed-stock', stock._id)" />
           </td>
         </tr>
@@ -43,7 +43,13 @@
 import Options from './readOptions';
 export default {
   components: { Options },
-  props: { stocks: Array },
+  props: {
+    stocks: Array,
+    options: {
+      type: Boolean,
+      default: false,
+    },
+  },
   methods: {
     calcPercent(before, now) {
       return this.$commonMethods.calcPercent(before, now);

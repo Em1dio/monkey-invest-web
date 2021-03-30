@@ -32,7 +32,7 @@
               <scale-icon />
             </div>
             <div class="infos-row">
-              <h2>Balance</h2>
+              <h2>Earn</h2>
               <p
                 :class="
                   stocks.totalActual - stocks.totalBefore > 0
