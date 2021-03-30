@@ -49,9 +49,6 @@ export default {
     },
     async readWalletsConsolidated() {
       const response = await this.$http.get('/wallets');
-      this.wallets = Object.keys(response).map(function (key) {
-        return [Number(key), response[key]];
-      });
       this.wallets = response.data;
       if (!this.$store.activeWallet) {
         this.$store.activeWallet = response.data[0]._id;

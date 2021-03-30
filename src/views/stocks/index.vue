@@ -8,7 +8,11 @@
       </div>
       <div class="region">
         <p class="region__titulo">Stocks</p>
-        <read-stocks :stocks="stocks" @removed-stock="removeStock($event)" />
+        <read-stocks
+          :options="true"
+          :stocks="stocks"
+          @removed-stock="removeStock($event)"
+        />
       </div>
     </div>
   </div>

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Dashboard from '../views/dashboard/Dashboard.vue';
 import Stocks from '../views/stocks';
+import Wallets from '../views/wallets';
 import VueCookies from 'vue-cookies';
 import './../plugins/axios';
 import Home from '@/views/Home.vue';
@@ -26,6 +27,19 @@ const routes = [
         path: '/stocks',
         name: 'stocks',
         component: Stocks,
+        meta: { requiresAuth: true },
+      },
+    ],
+  },
+  {
+    path: '/wallets',
+    component: Layout,
+    redirect: '/wallets',
+    children: [
+      {
+        path: '/wallets',
+        name: 'wallets',
+        component: Wallets,
         meta: { requiresAuth: true },
       },
     ],

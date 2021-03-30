@@ -13,8 +13,6 @@
     "feather-icons": "^4.28.0",
     "vue": "^2.6.12",
     "vue-cookies": "^1.7.4",
-    "vue-feather": "^1.1.1",
-    "vue-feather-icon": "^1.2.0",
     "vue-router": "^3.2.0",
     "vue-tabler-icons": "^1.8.1",
     "vuejs-overlay": "0.0.28",
