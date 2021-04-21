@@ -1,9 +1,9 @@
 <template>
-  <div class="stocksConsolidate">
+  <div class="consolidate">
     <title-bar size="50px" color="#e27034" textColor="#e7e7e7">
-      Stocks Consolidate
+      <slot></slot>
     </title-bar>
-    <wallets-content :stocks="stocks" />
+    <wallets-content :data="data" />
   </div>
 </template>
 
@@ -15,13 +15,13 @@ import TitleBar from '../../components/MonkeyPack/titleBar.vue';
 export default {
   components: { TitleBar, walletsContent },
   props: {
-    stocks: Object,
+    data: Object,
   },
 };
 </script>
 
 <style scoped>
-.stocksConsolidate {
+.consolidate {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
