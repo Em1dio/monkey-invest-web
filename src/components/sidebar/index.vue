@@ -12,7 +12,9 @@
         <item @click="GoTo('stocks')" text="Stocks">
           <file-certificate-icon />
         </item>
-        <item @click="GoTo('dashboard')" text="CryptoCoins"><coin-icon /></item>
+        <item @click="GoTo('cryptocoins')" text="CryptoCoins">
+          <coin-icon />
+        </item>
         <item @click="GoTo('dashboard')" text="Settings">
           <settings-icon />
         </item>
