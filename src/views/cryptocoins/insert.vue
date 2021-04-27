@@ -3,13 +3,11 @@
     <div class="form__add">
       <div class="form__input">
         <p class="input__titulo">CryptoCoins</p>
-        <monkey-input
-          name="CryptoSymbol"
-          type="text"
-          maxlength="6"
+        <monkey-select
+          :items="cryptos"
+          v-model="crypto.symbol"
           width="100%"
           minWidth="100px"
-          v-model="crypto.symbol"
         />
       </div>
       <div class="form__input">
@@ -63,8 +61,9 @@
 <script>
 import OrangeButton from '../../components/MonkeyPack/OrangeButton.vue';
 import MonkeyInput from '../../components/MonkeyPack/MonkeyInput.vue';
+import monkeySelect from '../../components/MonkeyPack/monkeySelect';
 export default {
-  components: { OrangeButton, MonkeyInput },
+  components: { OrangeButton, MonkeyInput, monkeySelect },
   data() {
     return {
       crypto: {
@@ -73,14 +72,20 @@ export default {
         value: null,
         date: null,
       },
+      cryptos: [
+        { id: 'BTC', value: 'BTC' },
+        { id: 'ETH', value: 'ETH' },
+        { id: 'XRP', value: 'XRP' },
+        { id: 'LTC', value: 'LTC' },
+      ],
     };
   },
   methods: {
     insertCrypto() {
       this.crypto.walletId = this.$store.activeWallet;
+      console.log(this.crypto);
       this.$emit('inserted-crypto', this.crypto);
       this.crypto = {
-        symbol: '',
         quantity: null,
         value: null,
         date: null,

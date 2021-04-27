@@ -30,7 +30,6 @@ export default {
   methods: {
     async insertCrypto(crypto) {
       try {
-        crypto.symbol = crypto.symbol.toUpperCase();
         await this.$http.post('/cryptocoins/', crypto);
         this.readCrypto();
       } catch (error) {
