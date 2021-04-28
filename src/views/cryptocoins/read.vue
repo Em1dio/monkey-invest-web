@@ -11,6 +11,7 @@
           <th>Total Actual</th>
           <th>$ Earn</th>
           <th>%</th>
+          <th>Owner</th>
           <th v-if="options">Actions</th>
         </tr>
         <tr v-for="cryptocoin in data.cryptos" :key="cryptocoin._id">
@@ -38,6 +39,9 @@
                 cryptocoin.actualValue * cryptocoin.quantity,
               ) | toPercent
             }}
+          </td>
+          <td>
+            {{ cryptocoin.userId }}
           </td>
           <td v-if="options">
             <options @remove="$emit('remove', cryptocoin._id)" />

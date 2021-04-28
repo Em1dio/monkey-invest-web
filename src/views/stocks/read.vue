@@ -11,6 +11,7 @@
           <th>Total Actual</th>
           <th>$ Earn</th>
           <th>%</th>
+          <th>Owner</th>
           <th v-if="options">Actions</th>
         </tr>
         <tr v-for="stock in stocks" :key="stock._id">
@@ -30,6 +31,7 @@
           <td>
             {{ calcPercent(stock.value, stock.actualValue) | toPercent }}
           </td>
+          <td>{{ stock.userId }}</td>
           <td v-if="options">
             <options @removed-stock="$emit('removed-stock', stock._id)" />
           </td>
