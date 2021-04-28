@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Dashboard from '../views/dashboard/Dashboard.vue';
+import Cryptocoins from '../views/cryptocoins';
 import Stocks from '../views/stocks';
 import Wallets from '../views/wallets';
 import VueCookies from 'vue-cookies';
@@ -27,6 +28,19 @@ const routes = [
         path: '/stocks',
         name: 'stocks',
         component: Stocks,
+        meta: { requiresAuth: true },
+      },
+    ],
+  },
+  {
+    path: '/cryptocoins',
+    component: Layout,
+    redirect: '/cryptocoins',
+    children: [
+      {
+        path: '/cryptocoins',
+        name: 'cryptocoins',
+        component: Cryptocoins,
         meta: { requiresAuth: true },
       },
     ],

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="form__read__stock">
-      <table v-if="stocks.length >= 1" class="stocks__table">
+    <div class="form__read">
+      <table v-if="data.cryptos.length >= 1" class="table">
         <tr>
           <th>Symbol</th>
           <th>Quantity</th>
@@ -14,26 +14,37 @@
           <th>Owner</th>
           <th v-if="options">Actions</th>
         </tr>
-        <tr v-for="stock in stocks" :key="stock._id">
-          <td>{{ stock.symbol }}</td>
-          <td>{{ stock.quantity }}</td>
-          <td>{{ stock.value | toCurrency }}</td>
-          <td>{{ (stock.value * stock.quantity) | toCurrency }}</td>
-          <td>{{ stock.actualValue | toCurrency }}</td>
-          <td>{{ (stock.actualValue * stock.quantity) | toCurrency }}</td>
+        <tr v-for="cryptocoin in data.cryptos" :key="cryptocoin._id">
+          <td>{{ cryptocoin.symbol }}</td>
+          <td>{{ cryptocoin.quantity }}</td>
+          <td>{{ cryptocoin.value | toCurrency }}</td>
+          <td>{{ (cryptocoin.value * cryptocoin.quantity) | toCurrency }}</td>
+          <td>
+            {{ cryptocoin.actualValue | toCurrency }}
+          </td>
+          <td>
+            {{ (cryptocoin.actualValue * cryptocoin.quantity) | toCurrency }}
+          </td>
           <td>
             {{
-              (stock.actualValue * stock.quantity -
-                stock.value * stock.quantity)
+              (cryptocoin.actualValue * cryptocoin.quantity -
+                cryptocoin.value * cryptocoin.quantity)
                 | toCurrency
             }}
           </td>
           <td>
-            {{ calcPercent(stock.value, stock.actualValue) | toPercent }}
+            {{
+              calcPercent(
+                cryptocoin.value * cryptocoin.quantity,
+                cryptocoin.actualValue * cryptocoin.quantity,
+              ) | toPercent
+            }}
           </td>
-          <td>{{ stock.userId }}</td>
+          <td>
+            {{ cryptocoin.userId }}
+          </td>
           <td v-if="options">
-            <options @removed-stock="$emit('removed-stock', stock._id)" />
+            <options @remove="$emit('remove', cryptocoin._id)" />
           </td>
         </tr>
       </table>
@@ -42,11 +53,11 @@
 </template>
 
 <script>
-import Options from './readOptions';
+import options from './readOptions.vue';
 export default {
-  components: { Options },
+  components: { options },
   props: {
-    stocks: Array,
+    data: Array,
     options: {
       type: Boolean,
       default: false,
@@ -74,11 +85,7 @@ th {
   padding: 8px;
 }
 
-/* tr:nth-child(even) {
-  background-color: #dddddd;
-} */
-
-.form__read__stock {
+.form__read {
   display: flex;
   flex-direction: row;
   align-items: baseline;

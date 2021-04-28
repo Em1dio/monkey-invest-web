@@ -9,8 +9,8 @@
             </div>
             <div class="infos-row">
               <h2>Invested</h2>
-              <p :class="stocks.totalBefore > 0 ? 'positive' : 'negative'">
-                {{ stocks.totalBefore | toCurrency }}
+              <p :class="data.totalBefore > 0 ? 'positive' : 'negative'">
+                {{ data.totalBefore | toCurrency }}
               </p>
             </div>
           </div>
@@ -20,8 +20,8 @@
             </div>
             <div class="infos-row">
               <h2>Actual Value</h2>
-              <p :class="stocks.totalActual > 0 ? 'positive' : 'negative'">
-                {{ stocks.totalActual | toCurrency }}
+              <p :class="data.totalActual > 0 ? 'positive' : 'negative'">
+                {{ data.totalActual | toCurrency }}
               </p>
             </div>
           </div>
@@ -35,12 +35,12 @@
               <h2>Earn</h2>
               <p
                 :class="
-                  stocks.totalActual - stocks.totalBefore > 0
+                  data.totalActual - data.totalBefore > 0
                     ? 'positive'
                     : 'negative'
                 "
               >
-                {{ (stocks.totalActual - stocks.totalBefore) | toCurrency }}
+                {{ (data.totalActual - data.totalBefore) | toCurrency }}
               </p>
             </div>
           </div>
@@ -50,13 +50,13 @@
             </div>
             <div class="infos-row">
               <h2>Earn</h2>
-              <p v-if="stocks.pctEarn >= 0" class="earn positive">
+              <p v-if="data.pctEarn >= 0" class="earn positive">
                 <arrow-narrow-up-icon class="positive" />
-                {{ stocks.pctEarn | toPercent }}
+                {{ data.pctEarn | toPercent }}
               </p>
               <p v-else class="earn negative">
                 <arrow-narrow-down-icon class="negative" />
-                {{ stocks.pctEarn | toPercent }}
+                {{ data.pctEarn | toPercent }}
               </p>
             </div>
           </div>
@@ -70,7 +70,7 @@
 export default {
   components: {},
   props: {
-    stocks: Object,
+    data: Object,
   },
 };
 </script>
