@@ -47,42 +47,4 @@ export default {
   column-gap: 20px;
   row-gap: 20px;
 }
-
-.wallet {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 240px;
-  height: 240px;
-  background: #363463;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-  padding: 10px;
-}
-
-.wallet:hover {
-  transform: scale(1.01);
-  background: #4e4a8f;
-}
-
-.wallet svg {
-  width: 35px;
-  height: 35px;
-  stroke: #e7e7e7;
-  stroke-width: 2;
-  margin-right: 10px;
-}
-
-.wallet h2 {
-  font-size: 12pt;
-  color: #e7e7e7;
-}
-
-.wallet p {
-  color: #e7e7e7;
-}
-.wallet span {
-  color: #e27034;
-}
 </style>
