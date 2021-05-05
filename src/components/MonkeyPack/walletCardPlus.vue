@@ -1,60 +1,38 @@
 <template>
   <div>
-    <monkey-modal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">{{ data.name }}</h3>
-      <h3 slot="body">Relatorio Acoes / Relatorio de Cryptos</h3>
+    <monkey-modal v-if="showModal" width="400px" @close="showModal = false">
+      <h3 slot="header">New Wallet</h3>
+      <h3 slot="body">
+        {{ wallet }}
+        <p>Name</p>
+        <monkey-input v-model="wallet.name" />
+        <p>Public</p>
+        <input type="checkbox" v-model="wallet.isPublic" />
+        <p>Simulation</p>
+        <input type="checkbox" v-model="wallet.isSimulation" />
+      </h3>
     </monkey-modal>
     <div class="walletCard" @click="showModal = true">
-      <div class="header-card">
-        <h1>{{ data.name }}</h1>
-        <p
-          :class="
-            data.totalActual - data.totalBefore >= 0
-              ? 'financial-income positive'
-              : 'financial-income negative'
-          "
-        >
-          {{ calcPercent(data.totalBefore, data.totalActual) | toPercent }}
-        </p>
-      </div>
-      <div class="body-card">
-        <div class="info">
-          <p>Owner</p>
-          <p>{{ data.ownerUsername }}</p>
-        </div>
-        <div class="info">
-          <p>Public</p>
-          <eye-icon v-if="data.isPublic" stroke-width="2" size="14" />
-          <eye-off-icon v-else stroke-width="2" size="14" />
-        </div>
-        <div class="info">
-          <p>Balance</p>
-          <p
-            :class="
-              data.totalActual - data.totalBefore >= 0 ? 'positive' : 'negative'
-            "
-          >
-            {{ data.totalActual | toCurrency }}
-          </p>
-        </div>
-      </div>
+      <file-plus-icon size="64" color="#E27034" />
     </div>
   </div>
 </template>
 
 <script>
+import MonkeyInput from './MonkeyInput.vue';
 import MonkeyModal from './monkeyModal.vue';
 export default {
-  components: { MonkeyModal },
+  components: { MonkeyModal, MonkeyInput },
   props: {
     data: Object,
   },
   data() {
     return {
       showModal: false,
-      stocks: [],
-      styled: {
-        width: '1000px',
+      wallet: {
+        name: '',
+        isPublic: false,
+        isSimulation: false,
       },
     };
   },
@@ -91,7 +69,8 @@ export default {
 }
 .walletCard {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 246px;
   height: 146px;
   background: #ffffff;
