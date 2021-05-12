@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Dashboard from '../views/dashboard/Dashboard.vue';
+import Settings from '../views/settings';
 import Cryptocoins from '../views/cryptocoins';
 import Stocks from '../views/stocks';
 import Wallets from '../views/wallets';
@@ -18,6 +19,19 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: { guest: true },
+  },
+  {
+    path: '/settings',
+    component: Layout,
+    redirect: '/settings',
+    children: [
+      {
+        path: '/settings',
+        name: 'settings',
+        component: Settings,
+        meta: { requiresAuth: true },
+      },
+    ],
   },
   {
     path: '/stocks',
