@@ -15,7 +15,7 @@
         <item @click="GoTo('cryptocoins')" text="CryptoCoins">
           <coin-icon />
         </item>
-        <item @click="GoTo('dashboard')" text="Settings">
+        <item @click="GoTo('settings')" text="Settings">
           <settings-icon />
         </item>
       </div>
