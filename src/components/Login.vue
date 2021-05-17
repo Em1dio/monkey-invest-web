@@ -38,7 +38,7 @@
         </orange-button>
       </div>
 
-      <form v-else class="register">
+      <div v-else class="register">
         <input
           name="name"
           v-model="register.name"
@@ -100,7 +100,7 @@
         <orange-button width="300px" marginTop="100px" @click="registerAccount">
           Register
         </orange-button>
-      </form>
+      </div>
     </div>
   </div>
 </template>
