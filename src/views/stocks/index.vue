@@ -38,7 +38,10 @@ export default {
         await this.$http.post('/stocks/', stock);
         this.readStock();
       } catch (error) {
-        console.log(error);
+        this.$toasted.error('Error to Insert this Stock', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
     async readStock() {
@@ -50,7 +53,10 @@ export default {
         );
         this.stocks = response.data;
       } catch (error) {
-        console.log(error);
+        this.$toasted.error('Error to Load Stocks', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
     async removeStock(id) {
@@ -66,7 +72,10 @@ export default {
         if (response.status === 200) {
           this.readStock();
         } else {
-          throw new Error('Teste');
+          this.$toasted.error('Error to Remove Stock', {
+            duration: 2000,
+            theme: 'bubble',
+          });
         }
       } catch (error) {
         console.log(error);

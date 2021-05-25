@@ -1,14 +1,14 @@
+import Layout from '@/components/index.vue';
+import Home from '@/views/Home.vue';
 import Vue from 'vue';
+import VueCookies from 'vue-cookies';
 import VueRouter from 'vue-router';
+import Cryptocoins from '../views/cryptocoins';
 import Dashboard from '../views/dashboard/Dashboard.vue';
 import Settings from '../views/settings';
-import Cryptocoins from '../views/cryptocoins';
 import Stocks from '../views/stocks';
 import Wallets from '../views/wallets';
-import VueCookies from 'vue-cookies';
 import './../plugins/axios';
-import Home from '@/views/Home.vue';
-import Layout from '@/components/index.vue';
 
 Vue.use(VueRouter);
 Vue.use(VueCookies);
@@ -81,12 +81,6 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,
-        meta: { requiresAuth: true },
-      },
-      {
-        path: '/analytics',
-        name: 'analytics',
-        component: () => import('@/views/analytics'),
         meta: { requiresAuth: true },
       },
     ],

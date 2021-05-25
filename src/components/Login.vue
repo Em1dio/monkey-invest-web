@@ -135,6 +135,10 @@ export default {
       try {
         const response = await this.$http.post('/auth/login', data);
         if (response.status === 201) {
+          this.$toasted.success('Welcome to MonkeyInvest', {
+            duration: 2000,
+            theme: 'bubble',
+          });
           this.$store.state.token = response.data.access_token;
           this.$store.state.authenticated = true;
           this.$store.state.username = this.login.username;
@@ -146,16 +150,25 @@ export default {
           this.$cookies.config('1d');
           this.$cookies.set('token', response.data.access_token);
           this.$router.replace({ name: 'dashboard' });
+        } else {
+          // this.toasted.show('hola billo');
+          console.log('test');
         }
       } catch (error) {
-        console.log(error);
+        this.$toasted.error('Username or Password Wrong', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
     async checkLogin() {
       if (this.login.username != '' && this.login.password != '') {
         await this.auth();
       } else {
-        console.log('username and password must be present');
+        this.$toasted.error('username and password must be present', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
 
@@ -163,7 +176,10 @@ export default {
       const confirmPassword =
         this.register.password === this.register.confirmPassword;
       if (!confirmPassword) {
-        // TODO: GERAR ALERT!
+        this.$toasted.error('Password/ConfirmPassword missmatch', {
+          duration: 2000,
+          theme: 'bubble',
+        });
         return;
       }
       const data = {
@@ -178,9 +194,16 @@ export default {
           this.register.username = '';
           this.register.password = '';
           this.showLogin = true;
+          this.$toasted.success('Signup with Success', {
+            duration: 2000,
+            theme: 'bubble',
+          });
         }
       } catch (error) {
-        console.log(error);
+        this.$toasted.error('Error to signup', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
   },
