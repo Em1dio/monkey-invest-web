@@ -15,6 +15,7 @@
     "vue-cookies": "^1.7.4",
     "vue-router": "^3.2.0",
     "vue-tabler-icons": "^1.8.1",
+    "vue-toasted": "^1.1.28",
     "vuejs-overlay": "0.0.28",
     "vuex": "^3.4.0"
   },

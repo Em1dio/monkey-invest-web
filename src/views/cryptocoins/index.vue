@@ -33,7 +33,10 @@ export default {
         await this.$http.post('/cryptocoins/', crypto);
         this.readCrypto();
       } catch (error) {
-        console.log(error);
+        this.$toasted.error('Error to Insert CryptoCoin', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
     async readCrypto() {
@@ -41,9 +44,11 @@ export default {
         const activeWallet = this.$store.activeWallet;
         const response = await this.$http.get(`/cryptocoins/${activeWallet}`);
         this.crypto = response.data;
-        console.log(this.crypto);
       } catch (error) {
-        console.log(error);
+        this.$toasted.error('Error to Read CryptoCoin', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
     async remove(id) {
@@ -57,12 +62,18 @@ export default {
           `/cryptocoins/${data.walletId}/${data.id}`,
         );
         if (response.status === 200) {
-          this.readStock();
+          this.readCrypto();
         } else {
-          throw new Error('Teste');
+          this.$toasted.error('Error to Remove CryptoCoin', {
+            duration: 2000,
+            theme: 'bubble',
+          });
         }
       } catch (error) {
-        console.log(error);
+        this.$toasted.error('Error to Remove CryptoCoin', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
   },
