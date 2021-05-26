@@ -1,18 +1,20 @@
 <template>
   <div>
-    <monkey-modal v-if="showModal" width="400px" @close="showModal = false">
+    <monkey-modal
+      v-if="showModal"
+      width="400px"
+      @close="showModal = false"
+      @enter="createWallet"
+    >
       <h3 slot="header">New Wallet</h3>
       <h3 slot="body">
-        {{ wallet }}
         <p>Name</p>
         <monkey-input v-model="wallet.name" />
         <p>Public</p>
         <input type="checkbox" v-model="wallet.isPublic" />
-        <p>Simulation</p>
-        <input type="checkbox" v-model="wallet.isSimulation" />
       </h3>
     </monkey-modal>
-    <div class="walletCard" @click="showModal = true">
+    <div class="walletCard" @click="show">
       <file-plus-icon size="64" color="#E27034" />
     </div>
   </div>
@@ -37,18 +39,30 @@ export default {
     };
   },
   methods: {
+    show() {
+      this.showModal = true;
+      this.wallet = {
+        name: '',
+        isPublic: false,
+        isSimulation: false,
+      };
+    },
     calcPercent(before, now) {
       return this.$commonMethods.calcPercent(before, now);
     },
-    async readStock(activeWallet) {
-      try {
-        const response = await this.$http.get(
-          `/stocks/${activeWallet}`,
-          this.stock,
-        );
-        this.stocks = response.data;
-      } catch (error) {
-        console.log(error);
+    async createWallet() {
+      this.showModal = false;
+      const response = await this.$http.post(`/wallets`, this.wallet);
+      if (response.status === 201) {
+        this.$toasted.success('Wallet Created', {
+          duration: 2000,
+          theme: 'bubble',
+        });
+      } else {
+        this.$toasted.error('Error to create Wallet', {
+          duration: 2000,
+          theme: 'bubble',
+        });
       }
     },
   },

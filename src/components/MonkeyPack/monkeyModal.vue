@@ -6,6 +6,9 @@
           <div class="modal-container" :style="style">
             <div class="modal-header">
               <slot name="header"> default header </slot>
+              <div class="icon">
+                <square-x-icon @click="$emit('close')" />
+              </div>
             </div>
 
             <div class="modal-body">
@@ -14,7 +17,7 @@
 
             <div class="modal-footer">
               <slot name="footer">
-                <button class="modal-default-button" @click="$emit('close')">
+                <button class="modal-default-button" @click="$emit('enter')">
                   OK
                 </button>
               </slot>
@@ -59,6 +62,11 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   display: table;
   transition: opacity 0.3s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -ms-user-select: none;
 }
 
 .modal-wrapper {
@@ -77,9 +85,14 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
-  margin-top: 0;
-  color: #42b983;
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header .icon {
+  cursor: pointer;
 }
 
 .modal-body {

@@ -4,18 +4,16 @@
       <title-bar size="50px" color="#e27034" textColor="#e7e7e7">
         Wallets
       </title-bar>
-      <orange-button> Public Wallets </orange-button>
       <read :data="data" />
     </div>
   </div>
 </template>
 
 <script>
-import OrangeButton from '../../components/MonkeyPack/OrangeButton';
 import TitleBar from '../../components/MonkeyPack/titleBar';
 import Read from './read';
 export default {
-  components: { TitleBar, OrangeButton, Read },
+  components: { TitleBar, Read },
   created() {
     this.readWalletsConsolidated();
   },
