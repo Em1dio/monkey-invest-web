@@ -34,10 +34,10 @@
             />
           </div>
         </div>
-        <p @click="showLogin = !showLogin">Click here to Signup</p>
-        <orange-button width="300px" marginTop="100px" @click="checkLogin">
+        <primary-button width="322px" @click="checkLogin">
           Login
-        </orange-button>
+        </primary-button>
+        <p @click="showLogin = !showLogin">Click here to Signup</p>
       </div>
 
       <div v-else class="register">
@@ -84,7 +84,7 @@
             name="confirmPassword"
             v-model="register.confirmPassword"
             :type="showPassword ? 'text' : 'password'"
-            placeholder="Password"
+            placeholder="Confirm password"
             @keyup.enter="registerAccount"
           />
           <div class="icon" @click="showPassword = !showPassword">
@@ -102,20 +102,20 @@
             />
           </div>
         </div>
-        <p @click="showLogin = !showLogin">Click here to Login</p>
-        <orange-button width="300px" marginTop="100px" @click="registerAccount">
+        <primary-button width="322px" @click="registerAccount">
           Register
-        </orange-button>
+        </primary-button>
+        <p @click="showLogin = !showLogin">Click here to Login</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import OrangeButton from './MonkeyPack/OrangeButton.vue';
+import PrimaryButton from './MonkeyPack/PrimaryButton.vue';
 
 export default {
-  components: { OrangeButton },
+  components: { PrimaryButton },
   data() {
     return {
       showPassword: false,
@@ -197,7 +197,7 @@ export default {
 * {
   display: flex;
   margin: 0 auto;
-  color: white;
+  color: #292755;
 }
 
 .form {
@@ -205,7 +205,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 150px;
+  margin: 50px 0;
 }
 
 .login,
@@ -218,30 +218,26 @@ export default {
 
 .form input {
   all: unset;
-  width: 477px;
+  width: 300px;
   height: 55px;
-  background: linear-gradient(
-    241.25deg,
-    rgba(41, 39, 85, 0.35) 4.4%,
-    rgba(41, 39, 84, 0.78) 61.77%,
-    rgba(27, 24, 66, 0.35) 119.94%
-  );
+  background: #fff;
   border-radius: 10px;
-  margin-bottom: 50px;
-  color: white;
+  border: 1px solid #d3e2e5;
+  margin-bottom: 20px;
+  color: #292755;
   text-align: start;
   padding: 0 10px;
 }
 
 .form ::placeholder {
-  color: rgba(255, 255, 255, 0.664);
+  color: #292755;
   opacity: 1; /* Firefox */
 }
 
 .form .password .icon {
-  height: 48px;
-  padding: 2px;
-  margin-left: -30px;
+  height: 32px;
+  padding: 5px;
+  margin-left: -35px;
   cursor: pointer;
   transition: opacity 150ms ease-in-out;
 
@@ -258,6 +254,7 @@ export default {
 }
 
 .form p {
+  margin: 20px 0;
   cursor: pointer;
   transition: opacity 150ms ease-in-out;
 }
