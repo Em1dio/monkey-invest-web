@@ -45,7 +45,7 @@ export default {
     },
     backgroundColor: {
       type: String,
-      default: '#FFF',
+      default: '#FFFFFF',
     },
     marginLeft: {
       type: String,
@@ -57,7 +57,7 @@ export default {
     },
     borderRadius: {
       type: String,
-      default: '10px',
+      default: '8px',
     },
     width: {
       type: String,
@@ -85,11 +85,11 @@ export default {
     },
     borderColor: {
       type: String,
-      default: '#cecece',
+      default: '#D3E2E5',
     },
     borderFocused: {
       type: String,
-      default: '#e85d04',
+      default: '#292755',
     },
     letterSpacing: {
       type: String,
@@ -109,11 +109,11 @@ export default {
     },
     fontFamily: {
       type: String,
-      default: 'Sora, sans-serif !important',
+      default: 'Roboto, sans-serif !important',
     },
     fontWeight: {
       type: String,
-      default: 'bold',
+      default: '500',
     },
     paddingRight: {
       type: String,
