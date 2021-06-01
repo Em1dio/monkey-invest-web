@@ -16,11 +16,15 @@
             </div>
 
             <div class="modal-footer">
-              <slot name="footer">
-                <button class="modal-default-button" @click="$emit('enter')">
-                  OK
-                </button>
-              </slot>
+              <slot name="footer"></slot>
+              <orange-button
+                width="100px"
+                height="20px"
+                size="10px"
+                @click="$emit('enter')"
+              >
+                OK
+              </orange-button>
             </div>
           </div>
         </div>
@@ -30,7 +34,9 @@
 </template>
 
 <script>
+import OrangeButton from './OrangeButton.vue';
 export default {
+  components: { OrangeButton },
   props: {
     width: {
       type: String,
@@ -50,6 +56,9 @@ export default {
 <style scoped>
 .modal-footer {
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .modal-mask {

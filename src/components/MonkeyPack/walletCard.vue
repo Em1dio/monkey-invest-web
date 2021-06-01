@@ -1,10 +1,32 @@
 <template>
   <div>
-    <monkey-modal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">{{ data.name }}</h3>
-      <h3 slot="body">Relatorio Acoes / Relatorio de Cryptos</h3>
+    <monkey-modal
+      width="800px"
+      v-if="showModal"
+      @close="showModal = false"
+      @enter="updateWallet"
+    >
+      <h3 slot="header"><h1>Customize Wallet</h1></h3>
+      <h3 slot="body">
+        <div class="edit_wallet">
+          <p>Name</p>
+          <input v-model="data.name" />
+          <p>Public</p>
+          <input type="checkbox" v-model="data.isPublic" />
+        </div>
+      </h3>
+      <h3 slot="footer">
+        <orange-button
+          width="100px"
+          height="20px"
+          size="10px"
+          @click="deleteWallet"
+        >
+          Excluir
+        </orange-button>
+      </h3>
     </monkey-modal>
-    <div class="walletCard" @click="showModal = true">
+    <div class="walletCard" @click="loadModal">
       <div class="header-card">
         <h1>{{ data.name }}</h1>
         <p
@@ -43,35 +65,50 @@
 </template>
 
 <script>
+import OrangeButton from './OrangeButton.vue';
 import MonkeyModal from './monkeyModal.vue';
 export default {
-  components: { MonkeyModal },
+  components: { MonkeyModal, OrangeButton },
   props: {
     data: Object,
   },
   data() {
     return {
       showModal: false,
-      stocks: [],
       styled: {
         width: '1000px',
       },
     };
   },
   methods: {
+    loadModal() {
+      this.showModal = true;
+    },
     calcPercent(before, now) {
       return this.$commonMethods.calcPercent(before, now);
     },
-    async readStock(activeWallet) {
+    async updateWallet() {
+      const info = {
+        id: this.data._id,
+        name: this.data.name,
+        isPublic: this.data.isPublic,
+        isSimulation: this.data.isSimulation,
+      };
       try {
-        const response = await this.$http.get(
-          `/stocks/${activeWallet}`,
-          this.stock,
-        );
+        const response = await this.$http.put(`/wallets/${info.id}`, info);
         this.stocks = response.data;
       } catch (error) {
         console.log(error);
       }
+      this.showModal = false;
+    },
+    async deleteWallet() {
+      try {
+        await this.$http.delete(`/wallets/${this.data._id}`);
+      } catch (error) {
+        console.log(error);
+      }
+      this.showModal = false;
     },
   },
 };
